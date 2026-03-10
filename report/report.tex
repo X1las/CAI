@@ -2,7 +2,7 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[
-    backend=biber,
+  backend=biber,
     style=apa,
     citestyle=authoryear,
     sortcites=true
@@ -18,7 +18,7 @@
 \usepackage{titling} % For customizing the title page
 
 \title{CAI - Counter Artificial Intelligence}
-\author{J. Wolffrom, M. Ørsted, J.}
+\author{J. Wolffrom, M. Ørsted, J. Broager}
 \date{\today}
 
 % Redefine the \maketitle command to include the logo
@@ -34,7 +34,7 @@
     \vspace{1.5cm}
     
     {\Large\theauthor\par}
-    {\large jwsc@ruc.dk, maltheo@ruc.dk, email3@ruc.dk\par}
+    {\large jwsc@ruc.dk, maltheo@ruc.dk, joakimdb@ruc.dk\par}
     \vspace{1cm}
     {\large Supervisor: \par}
     {\large\textit{ADD SUPERVISOR}\par}   
@@ -51,8 +51,9 @@
 
 \begin{document}
 
+\hypersetup{pageanchor=false}
 \maketitle
-\newpage
+\hypersetup{pageanchor=true}
 
 \begin{abstract}
 
@@ -64,11 +65,44 @@
 \tableofcontents
 \newpage
 
+\section{Disclosure}
+\label{Disclosure}
+
 \input{disclosure.tex}
+
+\section{Introduction}
+\label{Introduction}
 
 \input{introduction.tex}
 \newpage
 
+\section{Analysis}
+\label{Analysis}
 
+\input{analysis.tex}
+\newpage
+
+\section{Discussion}
+\label{Discussion}
+
+\input{discussion.tex}
+\newpage
+
+\section{Conclusion}
+\label{Conclusion}
+
+\input{conclusion.tex}
+\newpage
+
+\section{Future Work}
+\label{FutureWork}
+
+\citeauthor{example2023}
+
+\input{future_work.tex}
+\newpage
+
+\section{References}
+\printbibliography
 
 \end{document}

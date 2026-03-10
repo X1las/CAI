@@ -7,6 +7,6 @@ report/*
 !README*
 !*.ipynb
 !*.tex
-!*.bib
+references.bib
 !*.png
 !*.jpg
