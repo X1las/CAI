@@ -1,5 +1,6 @@
 # Ignore everything
-*
+python3venv
+report/*
 
 # But not these files:
 !.gitignore
@@ -7,3 +8,5 @@
 !*.ipynb
 !*.tex
 !*.bib
+!*.png
+!*.jpg
