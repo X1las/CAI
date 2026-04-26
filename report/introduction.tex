@@ -1,13 +1,13 @@
-It In August 2025, Anthropic's Claude model was used in one of, if not the first case of "vibe hacking" outlined in \fullcite{ThreatReport2025}. The hacker used the model to look for publicly available information about security vulnerabilities in software used by various organizations, find companies that utilized the software, and then exploited the bug to gain access to their internal infrastructure. The hack was unique in the sense that the hack was made with minimal human involvement, and the hacker was able to use the model to generate the necessary malware to extort the companies for a ransom.
+In August 2025, Anthropic's Claude model was reportedly used in one of the first documented cases of ``vibe hacking'' as outlined in \fullcite{ThreatReport2025}. In that case, the attacker used the model to collect publicly available vulnerability information, identify organizations using the affected software, and exploit the vulnerability to gain access to internal infrastructure. The incident was notable because it required limited human involvement, while the model assisted in producing malicious tooling used for extortion.
 
-If AI continues to develop at the current pace, it is likely that we will see more cases of "vibe hacking", and maybe even cases where the bad actor itself is an AI model, and not a human. If such is the case, then we will need to study how AI models might interact with each other in a local system, to get a feel for their capabilities and limitations, and to be able to train a model that can detect and counteract malicious AI models.
+If AI continues to develop at the current pace, similar incidents are likely to become more frequent. It is also plausible that some future attacks will be increasingly autonomous, if not fully. In that context, the need for stronger cybersecurity capabilities will grow, and many experts argue that AI will play a central role in both attack and defense strategies. This motivates research into how AI models behave when they share the same system and are tasked with detecting, disrupting, or countering each other.
 
 \subsection{The Problem}
 \label{ResearchQuestion}
 
-Keeping it simple, the problem we are trying to solve is two part. First, it is uncertain what commands are available for an AI model to use, should it be running on a local system with free reign to interact with the system however it sees fit. Second, it is not known how an AI model should be trained to use these commands, and what the most effective combination of commands would be to counteract another AI model.
+The aim of this research paper is not to predict exactly how AI models would counteract each other, but to explore how they might use available system tools in a simulated local environment, and whether useful insights can be gained from this process.
 
-Then the problem becomes that we need to know what the options are for an AI that runs on a local system to interact with the system and with other AI models. 
+In simple terms, the problem is twofold. First, it is unclear which terminal commands are realistically available to an AI agent running locally with broad system access. Second, it is not known how an AI model should be trained to use such commands effectively, or which combinations are most useful for detecting and counteracting another model in the same environment.
 
 \subsubsection{Research Question}
 
@@ -17,14 +17,19 @@ The research question is then as follows:
     \textit{How does AI interact with other AI models in a local system, and what are the implications for detecting and counteracting malicious AI?}
 \end{center}
 
-The research question is focused on the training aspect of AI, as it is the core problem needs to be solved in this case. Data is the most important aspect of training an AI model, and in our case, it us not clear what that data would look like or how we would obtain it to begin with, as such this becomes the main focus of our research to uncover. 
-
-For this, we will need to explore three main topics. The first being hacking in general, the second being AI and how it is being trained currently, and the third being the intersection of the two, which is "vibe hacking".
-
-With this outline, we can ask ourselves the following sub-questions:
 \begin{itemize}
-    \item What are the current methods of training AI models?
-    \item What are the potential challenges in training an AI model on data indirectly or directly related to another model?
-    \item What problems may arise from training an AI to detect and counteract malicious AI, and how can we mitigate these problems?
+    \item \textbf{RQ1:} What commands are available for an AI model to use in a local system, and how can they be used to interact with other AI models?
+    \item \textbf{RQ2:} How can an AI model be trained to use these commands effectively to detect and counteract another AI model that exists in the same local system?
+    \item \textbf{RQ3:} What does a simulation of two AI models interacting with each other in a local system look like, and what can we learn from it?
+    \item \textbf{RQ4:} What are the implications of AI models interacting with each other in a local system for the future of AI safety and security?
+    \item \textbf{RQ5:} What are the ethical considerations of AI models being trained on data generated by other AI models?
 \end{itemize}
+
+\subsection{Methodology}
+
+To address \textbf{RQ1}, this project will construct and analyze a cross-platform command inventory for both Windows and Unix-like systems. The inventory will include commands from Windows Command Prompt/PowerShell and Unix shells (e.g., Bash), and group them by operational purpose: system discovery, file and permission management, process control, network inspection, automation, and defensive response.
+
+Each command will be evaluated using consistent criteria: required privileges, expected output quality, execution risk, side effects, logging visibility, and availability of equivalent commands across platforms. This makes it possible to compare not only what commands exist, but also how practical and safe they are for autonomous use by an AI model.
+
+The result for RQ1 is therefore not just a list of commands, but an analyzed command set that identifies which actions are feasible, comparable between operating systems, and relevant for AI-versus-AI detection and counteraction scenarios.
 
