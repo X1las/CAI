@@ -1,0 +1,308 @@
+\section{Linux Bash Command Reference}
+\label{AppendixBashCommands}
+The following is a complete A--Z index of Linux Bash commands and utilities, sourced from \url{https://ss64.com/bash/}. Commands marked with \textbullet{} are Bash built-ins; all others are external utilities or Core Utils.
+
+\small
+\begin{longtable}{ll}
+\hline
+\textbf{Command} & \textbf{Description} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Command} & \textbf{Description} \\
+\hline
+\endhead
+\hline
+\endfoot
+\texttt{\&}          & Start a new process in the background \\
+\texttt{alias} \textbullet  & Create an alias \\
+\texttt{apropos}     & Search Help manual pages (man -k) \\
+\texttt{apt}         & Search for and install software packages (Debian/Ubuntu) \\
+\texttt{apt-get}     & Search for and install software packages (Debian/Ubuntu) \\
+\texttt{aptitude}    & Search for and install software packages (Debian/Ubuntu) \\
+\texttt{aspell}      & Spell checker \\
+\texttt{at}          & Schedule a command to run once at a particular time \\
+\texttt{awk}         & Find and replace text, database sort/validate/index \\
+\hline
+\texttt{basename}    & Strip directory and suffix from filenames \\
+\texttt{base32}      & Base32 encode/decode data and print to standard output \\
+\texttt{base64}      & Base64 encode/decode data and print to standard output \\
+\texttt{bash}        & GNU Bourne-Again SHell \\
+\texttt{bc}          & Arbitrary precision calculator language \\
+\texttt{bg} \textbullet       & Send to background \\
+\texttt{bind} \textbullet     & Set or display readline key and function bindings \\
+\texttt{break} \textbullet    & Exit from a loop \\
+\texttt{builtin}     & Run a shell builtin \\
+\texttt{bzip2}       & Compress or decompress named file(s) \\
+\hline
+\texttt{cal}         & Display a calendar \\
+\texttt{caller} \textbullet   & Return the context of any active subroutine call \\
+\texttt{case}        & Conditionally perform a command \\
+\texttt{cat}         & Concatenate and print (display) the content of files \\
+\texttt{cd} \textbullet       & Change directory \\
+\texttt{cfdisk}      & Partition table manipulator for Linux \\
+\texttt{chattr}      & Change file attributes on a Linux file system \\
+\texttt{chgrp}       & Change group ownership \\
+\texttt{chmod}       & Change access permissions \\
+\texttt{chown}       & Change file owner and group \\
+\texttt{chpasswd}    & Update passwords in batch mode \\
+\texttt{chroot}      & Run a command with a different root directory \\
+\texttt{chkconfig}   & System services (runlevel) \\
+\texttt{cksum}       & Print CRC checksum and byte counts \\
+\texttt{clear}       & Clear the terminal screen/console (ncurses) \\
+\texttt{clear\_console} & Clear the terminal screen/console (bash) \\
+\texttt{cmp}         & Compare two files \\
+\texttt{comm}        & Compare two sorted files line by line \\
+\texttt{command} \textbullet  & Run a command, ignoring shell functions \\
+\texttt{continue} \textbullet & Resume the next iteration of a loop \\
+\texttt{cp}          & Copy one or more files to another location \\
+\texttt{cpio}        & Copy files to and from archives \\
+\texttt{cron}        & Daemon to execute scheduled commands \\
+\texttt{crontab}     & Schedule a command to run at a later time \\
+\texttt{csplit}      & Split a file into context-determined pieces \\
+\texttt{curl}        & Transfer data from or to a server \\
+\texttt{cut}         & Divide a file into several parts \\
+\hline
+\texttt{date}        & Display or change the date \& time \\
+\texttt{dc}          & Desk calculator \\
+\texttt{dd}          & Data duplicator --- convert and copy a file \\
+\texttt{ddrescue}    & Data recovery tool \\
+\texttt{declare} \textbullet  & Declare variables and give them attributes \\
+\texttt{df}          & Display free disk space \\
+\texttt{diff}        & Display differences between two files \\
+\texttt{diff3}       & Show differences among three files \\
+\texttt{dig}         & DNS lookup \\
+\texttt{dir}         & Briefly list directory contents \\
+\texttt{dircolors}   & Colour setup for \texttt{ls} \\
+\texttt{dirname}     & Convert a full pathname to just a path \\
+\texttt{dirs} \textbullet     & Display list of remembered directories \\
+\texttt{dos2unix}    & Windows/MAC to UNIX text file format converter \\
+\texttt{dmesg}       & Print kernel \& driver messages \\
+\texttt{dpkg}        & Package manager (Debian/Ubuntu) \\
+\texttt{du}          & Estimate file space usage \\
+\hline
+\texttt{echo} \textbullet     & Display message on screen \\
+\texttt{egrep}       & Search file(s) for lines matching an extended expression \\
+\texttt{eject}       & Eject removable media \\
+\texttt{enable} \textbullet   & Enable and disable builtin shell commands \\
+\texttt{env}         & Environment variables \\
+\texttt{ethtool}     & Ethernet card settings \\
+\texttt{eval} \textbullet     & Evaluate several commands/arguments \\
+\texttt{exec} \textbullet     & Execute a command \\
+\texttt{exit} \textbullet     & Exit the shell \\
+\texttt{expand}      & Convert tabs to spaces \\
+\texttt{export} \textbullet   & Set an environment variable \\
+\texttt{expr}        & Evaluate expressions \\
+\hline
+\texttt{false} \textbullet    & Do nothing, unsuccessfully \\
+\texttt{fdformat}    & Low-level format a floppy disk \\
+\texttt{fdisk}       & Partition table manipulator for Linux \\
+\texttt{fg} \textbullet       & Send job to foreground \\
+\texttt{fgrep}       & Search file(s) for lines matching a fixed string \\
+\texttt{file}        & Determine file type \\
+\texttt{find}        & Search for files that meet a desired criteria \\
+\texttt{fmt}         & Reformat paragraph text \\
+\texttt{fold}        & Wrap text to fit a specified width \\
+\texttt{for}         & Expand words, and execute commands \\
+\texttt{free}        & Display memory usage \\
+\texttt{fsck}        & File system consistency check and repair \\
+\texttt{ftp}         & File Transfer Protocol \\
+\texttt{function}    & Define function macros \\
+\texttt{fuser}       & Identify/kill the process accessing a file \\
+\hline
+\texttt{gawk}        & Find and replace text within file(s) \\
+\texttt{getopts} \textbullet  & Parse positional parameters \\
+\texttt{getfacl}     & Get file access control lists \\
+\texttt{grep}        & Search file(s) for lines matching a given pattern \\
+\texttt{groupadd}    & Add a user security group \\
+\texttt{groupdel}    & Delete a group \\
+\texttt{groupmod}    & Modify a group \\
+\texttt{groups}      & Print group names a user is in \\
+\texttt{gzip}        & Compress or decompress named file(s) \\
+\hline
+\texttt{hash} \textbullet     & Remember the full pathname of a name argument \\
+\texttt{head}        & Output the first part of file(s) \\
+\texttt{help} \textbullet     & Display help for a built-in command \\
+\texttt{history} \textbullet  & Command history \\
+\texttt{hostname}    & Print or set system name \\
+\texttt{htop}        & Interactive process viewer \\
+\hline
+\texttt{iconv}       & Convert the character set of a file \\
+\texttt{id}          & Print user and group id's \\
+\texttt{if}          & Conditionally perform a command \\
+\texttt{ifconfig}    & Configure a network interface \\
+\texttt{ifdown}      & Stop a network interface \\
+\texttt{ifup}        & Start a network interface \\
+\texttt{import}      & Capture an X server screen and save the image to file \\
+\texttt{install}     & Copy files and set attributes \\
+\texttt{iostat}      & Report CPU and I/O statistics \\
+\texttt{ip}          & Routing, devices and tunnels \\
+\hline
+\texttt{jobs} \textbullet     & List active jobs \\
+\texttt{join}        & Join lines on a common field \\
+\hline
+\texttt{kill} \textbullet     & Kill a process by specifying its PID \\
+\texttt{killall}     & Kill processes by name \\
+\texttt{klist}       & List cached Kerberos tickets \\
+\hline
+\texttt{less}        & Display output one screen at a time \\
+\texttt{let} \textbullet      & Perform arithmetic on shell variables \\
+\texttt{link}        & Create a link to a file \\
+\texttt{ln}          & Create a symbolic link to a file \\
+\texttt{local} \textbullet    & Create a function variable \\
+\texttt{locate}      & Find files \\
+\texttt{login}       & Login to the computer \\
+\texttt{logname}     & Print current login name \\
+\texttt{logout} \textbullet   & Exit a login shell \\
+\texttt{look}        & Display lines beginning with a given string \\
+\texttt{lpc}         & Line printer control program \\
+\texttt{lpr}         & Print files \\
+\texttt{lprm}        & Remove jobs from the print queue \\
+\texttt{ls}          & List information about file(s) \\
+\texttt{lsattr}      & List file attributes on a Linux ext2 file system \\
+\texttt{lsblk}       & List block devices \\
+\texttt{lsof}        & List open files \\
+\texttt{lspci}       & List all PCI devices \\
+\hline
+\texttt{make}        & Recompile a group of programs \\
+\texttt{man}         & Help manual \\
+\texttt{mapfile} \textbullet  & Read lines from stdin into an indexed array variable \\
+\texttt{md5sum}      & Compute and check MD5 message digest \\
+\texttt{mkdir}       & Create new folder(s) \\
+\texttt{mkfifo}      & Make FIFOs (named pipes) \\
+\texttt{mktemp}      & Make a temporary file \\
+\texttt{more}        & Display output one screen at a time \\
+\texttt{mount}       & Mount a file system \\
+\texttt{mtr}         & Network diagnostics (traceroute/ping) \\
+\texttt{mv}          & Move or rename files or directories \\
+\hline
+\texttt{nc}          & Netcat, read and write data across networks \\
+\texttt{netstat}     & Networking connections/statistics \\
+\texttt{nft}         & Packet filtering and classification (nftables) \\
+\texttt{nice}        & Set the priority of a command or job \\
+\texttt{nl}          & Number lines and write files \\
+\texttt{nohup}       & Run a command immune to hangups \\
+\texttt{nslookup}    & Query Internet name servers interactively \\
+\hline
+\texttt{openssl}     & OpenSSL command line \\
+\hline
+\texttt{passwd}      & Modify a user password \\
+\texttt{paste}       & Merge lines of files \\
+\texttt{ping}        & Test a network connection \\
+\texttt{pgrep}       & List processes by name \\
+\texttt{pkill}       & Kill processes by name \\
+\texttt{popd} \textbullet     & Restore the previous value of the current directory \\
+\texttt{pr}          & Prepare files for printing \\
+\texttt{printenv}    & Print environment variables \\
+\texttt{printf} \textbullet   & Format and print data \\
+\texttt{ps}          & Process status \\
+\texttt{pushd} \textbullet    & Save and then change the current directory \\
+\texttt{pwd} \textbullet      & Print working directory \\
+\hline
+\texttt{quota}       & Display disk usage and limits \\
+\hline
+\texttt{rcp}         & Copy files between two machines \\
+\texttt{read} \textbullet     & Read a line from standard input \\
+\texttt{readarray} \textbullet & Read from stdin into an array variable \\
+\texttt{readonly} \textbullet & Mark variables/functions as readonly \\
+\texttt{reboot}      & Reboot the system \\
+\texttt{rename}      & Rename files \\
+\texttt{renice}      & Alter priority of running processes \\
+\texttt{return} \textbullet   & Exit a shell function \\
+\texttt{rev}         & Reverse lines of a file \\
+\texttt{rm}          & Remove files \\
+\texttt{rmdir}       & Remove folder(s) \\
+\texttt{rsync}       & Remote file copy (synchronize file trees) \\
+\hline
+\texttt{screen}      & Multiplex terminal, run remote shells via ssh \\
+\texttt{scp}         & Secure copy (remote file copy) \\
+\texttt{sed}         & Stream editor \\
+\texttt{select}      & Accept user choices via keyboard input \\
+\texttt{seq}         & Print numeric sequences \\
+\texttt{set} \textbullet      & Manipulate shell variables and functions \\
+\texttt{setfacl}     & Set file access control lists \\
+\texttt{sftp}        & Secure file transfer program \\
+\texttt{sha256sum}   & Compute and check SHA256 checksums \\
+\texttt{shift} \textbullet    & Shift positional parameters \\
+\texttt{shopt} \textbullet    & Shell options \\
+\texttt{shuf}        & Generate random permutations \\
+\texttt{shutdown}    & Shutdown or restart Linux \\
+\texttt{sleep}       & Delay for a specified time \\
+\texttt{sort}        & Sort text files \\
+\texttt{source} \textbullet   & Run commands from a file \\
+\texttt{split}       & Split a file into fixed-size pieces \\
+\texttt{ss}          & Socket statistics \\
+\texttt{ssh}         & Secure shell client (remote login program) \\
+\texttt{stat}        & Display file or file system status \\
+\texttt{strace}      & Trace system calls and signals \\
+\texttt{su}          & Substitute user identity \\
+\texttt{sudo}        & Execute a command as another user \\
+\texttt{sum}         & Print a checksum for a file \\
+\texttt{suspend} \textbullet  & Suspend execution of this shell \\
+\texttt{sync}        & Synchronize data on disk with memory \\
+\hline
+\texttt{tac}         & Concatenate and write files in reverse \\
+\texttt{tail}        & Output the last part of a file \\
+\texttt{tar}         & Store, list or extract files in an archive \\
+\texttt{tee}         & Redirect output to multiple files \\
+\texttt{test} \textbullet     & Evaluate a conditional expression \\
+\texttt{time}        & Measure program running time \\
+\texttt{timeout}     & Run a command with a time limit \\
+\texttt{times} \textbullet    & User and system times \\
+\texttt{tmux}        & Terminal multiplexer \\
+\texttt{touch}       & Change file timestamps \\
+\texttt{top}         & List processes running on the system \\
+\texttt{tput}        & Set terminal-dependent capabilities, colour, position \\
+\texttt{traceroute}  & Trace route to host \\
+\texttt{trap} \textbullet     & Execute a command when the shell receives a signal \\
+\texttt{tr}          & Translate, squeeze, and/or delete characters \\
+\texttt{true} \textbullet     & Do nothing, successfully \\
+\texttt{tsort}       & Topological sort \\
+\texttt{tty}         & Print filename of terminal on stdin \\
+\texttt{type} \textbullet     & Describe a command \\
+\hline
+\texttt{ulimit} \textbullet   & Limit user resources \\
+\texttt{umask} \textbullet    & Users file creation mask \\
+\texttt{umount}      & Unmount a device \\
+\texttt{unalias} \textbullet  & Remove an alias \\
+\texttt{uname}       & Print system information \\
+\texttt{unexpand}    & Convert spaces to tabs \\
+\texttt{uniq}        & Uniquify files \\
+\texttt{units}       & Convert units from one scale to another \\
+\texttt{unset} \textbullet    & Remove variable or function names \\
+\texttt{until}       & Execute commands (until error) \\
+\texttt{uptime}      & Show uptime \\
+\texttt{useradd}     & Create new user account \\
+\texttt{userdel}     & Delete a user account \\
+\texttt{usermod}     & Modify user account \\
+\texttt{users}       & List users currently logged in \\
+\hline
+\texttt{vi}          & Text editor \\
+\texttt{vmstat}      & Report virtual memory statistics \\
+\hline
+\texttt{w}           & Show who is logged on and what they are doing \\
+\texttt{wait} \textbullet     & Wait for a process to complete \\
+\texttt{watch}       & Execute/display a program periodically \\
+\texttt{wc}          & Print byte, word, and line counts \\
+\texttt{whereis}     & Search \$PATH, man pages and source files for a program \\
+\texttt{which}       & Search \$PATH for a program file \\
+\texttt{while}       & Execute commands \\
+\texttt{who}         & Print all usernames currently logged in \\
+\texttt{whoami}      & Print the current user id and name \\
+\texttt{wget}        & Retrieve web pages or files via HTTP, HTTPS or FTP \\
+\texttt{write}       & Send a message to another user \\
+\hline
+\texttt{xargs}       & Execute utility, passing constructed argument list(s) \\
+\texttt{xxd}         & Make a hexdump or do the reverse \\
+\texttt{xz}          & Compress or decompress .xz and .lzma files \\
+\hline
+\texttt{yes}         & Print a string until interrupted \\
+\hline
+\texttt{zip}         & Package and compress (archive) files \\
+\texttt{.}           & Run a command script in the current shell \\
+\texttt{!!}          & Run the last command again \\
+\texttt{\#}          & Comment / remark \\
+\hline
+\end{longtable}
+
+\noindent\small{Source: \url{https://ss64.com/bash/}. Commands marked \textbullet{} are Bash built-ins.}

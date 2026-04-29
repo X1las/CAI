@@ -33,3 +33,18 @@ Each command will be evaluated using consistent criteria: required privileges, e
 
 The result for RQ1 is therefore not just a list of commands, but an analyzed command set that identifies which actions are feasible, comparable between operating systems, and relevant for AI-versus-AI detection and counteraction scenarios.
 
+As a first Unix-side baseline, the project can begin with Bash built-in commands, since these are available directly through the shell and do not depend on separate packages being installed. A practical initial inventory is:
+
+\begin{itemize}
+    \item \textbf{Environment and shell state:} \\
+    \texttt{alias}, \texttt{bind}, \texttt{builtin}, \texttt{command}, \texttt{declare}, \texttt{enable}, \texttt{export}, \texttt{hash}, \texttt{help}, \\
+    \texttt{let}, \texttt{local}, \texttt{readonly}, \texttt{set}, \texttt{shopt}, \texttt{type}, \texttt{typeset}, \texttt{unalias}, \texttt{unset}
+    \item \textbf{Navigation and directory stack:} \texttt{cd}, \texttt{dirs}, \texttt{popd}, \texttt{pushd}, \texttt{pwd}
+    \item \textbf{Input and output handling:} \texttt{echo}, \texttt{mapfile}, \texttt{printf}, \texttt{read}, \texttt{readarray}, \texttt{test}
+    \item \textbf{Job and process control:} \texttt{bg}, \texttt{disown}, \texttt{exec}, \texttt{exit}, \texttt{fg}, \texttt{jobs}, \texttt{kill}, \texttt{logout}, \texttt{suspend}, \texttt{wait}
+    \item \textbf{Control flow and evaluation:} \texttt{break}, \texttt{caller}, \texttt{continue}, \texttt{eval}, \texttt{false}, \texttt{fc}, \texttt{getopts}, \texttt{return}, \texttt{shift}, \texttt{source}, \texttt{times}, \texttt{trap}, \texttt{true}, \texttt{ulimit}, \texttt{umask}
+    \item \textbf{Completion support:} \texttt{compgen}, \texttt{complete}, \texttt{compopt}
+\end{itemize}
+
+This subset is useful for the simulation design because it captures actions that an AI agent can often perform even in a minimal shell environment: changing execution context, inspecting or modifying shell state, reading input, formatting output, managing jobs, and controlling basic script logic. Later stages of the inventory can then add external Unix commands such as \texttt{ls}, \texttt{ps}, \texttt{find}, and \texttt{grep}, which extend the agent's ability to inspect and manipulate the surrounding system.
+
