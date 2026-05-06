@@ -50,20 +50,206 @@ It is important to note that these categories are neither definitive nor exhaust
 
 \subsubsection{Navigation and Search}
 
-This category includes commands that allow for navigation of filesystems and searching for files or content within them. The following commands are included for this reason:
+This category includes commands that allow for navigation of filesystems and searching for files or content within them. The following commands are included with a short description of their functionality:
 
 \begin{itemize}
-    \item \texttt{cd} --- Changes the current working directory. Included because an agent operating in a local system must be able to move between directories to access different parts of the filesystem.
-    \item \texttt{pwd} --- Prints the current working directory. Included because it allows an agent to determine its current location in the filesystem at any point.
-    \item \texttt{ls} --- Lists the contents of a directory, including files and subdirectories. Included because it allows an agent to enumerate the contents of any directory it has access to.
-    \item \texttt{dir} --- Provides a brief listing of directory contents. Included as a functional alternative to \texttt{ls} for directory enumeration.
-    \item \texttt{pushd}, \texttt{popd}, \texttt{dirs} --- Manage a stack of remembered directories, allowing an agent to save its current location, navigate elsewhere, and return. Included because they enable structured traversal of the filesystem.
-    \item \texttt{find} --- Searches for files and directories meeting specified criteria such as name, type, permissions, or modification time. Included because it allows an agent to locate files of interest across the entire filesystem.
-    \item \texttt{grep}, \texttt{egrep}, \texttt{fgrep} --- Search the contents of files for lines matching a given pattern, extended regular expression, or fixed string, respectively. Included because they allow an agent to scan files for specific content.
-    \item \texttt{locate} --- Finds files by name using a pre-built index of the filesystem. Included because it provides a fast alternative to \texttt{find} for locating files by name.
-    \item \texttt{awk}, \texttt{gawk} --- Scan and process text files, with support for pattern matching and field-based operations. Included because they allow an agent to extract and filter structured information from files.
-    \item \texttt{look} --- Displays lines from a file that begin with a given string. Included because it provides a simple means of searching sorted text data.
-    \item \texttt{basename}, \texttt{dirname} --- Extract the filename and directory components of a path, respectively. Included because they allow an agent to manipulate and interpret file paths.
-    \item \texttt{less}, \texttt{more} --- Display file contents one screen at a time. Included because they allow an agent to read through large files in a controlled manner.
-    \item \texttt{head}, \texttt{tail} --- Output the first or last lines of a file, respectively. Included because they allow an agent to quickly inspect the beginning or end of a file without reading it in full.
+    \item \texttt{cd:} Changes the current working directory.
+    \item \texttt{pwd:} Prints the current working directory.
+    \item \texttt{ls:} Lists the contents of a directory, including files and subdirectories.
+    \item \texttt{dir:} Provides a brief listing of directory contents.
+    \item \texttt{pushd}, \texttt{popd:} Manage a stack of remembered directories, allowing an agent to save its current location, navigate elsewhere, and return.
+    \item \texttt{dirs:} Displays the list of currently remembered directories in the stack.
+    \item \texttt{find:} Searches for files and directories meeting specified criteria such as name, type, permissions, or modification time.
+    \item \texttt{grep}, \texttt{egrep}, \texttt{fgrep:} Search the contents of files for lines matching a given pattern, extended regular expression, or fixed string, respectively.
+    \item \texttt{locate}, \texttt{slocate:} Finds files by name using a pre-built index of the filesystem. Not unlike \texttt{find}, but much faster for large filesystems.
+    \item \texttt{awk}, \texttt{gawk:} Scan files for lines matching a pattern and perform a specified action on those lines.
+    \item \texttt{look:} Displays lines from a file that begin with a given string.
+    \item \texttt{basename}, \texttt{dirname:} Extract the filename and directory components of a path, respectively.
+    \item \texttt{less}, \texttt{more:} Display file contents one screen at a time.
+    \item \texttt{head}, \texttt{tail:} Output the first or last lines of a file, respectively.
 \end{itemize}
+
+Users can utilize these commands to navigate the filesystem. Commands such as \texttt{cd} and \texttt{pwd} provide movement and awareness of their current location, while \texttt{ls} and \texttt{dir} allow for exploration of the directory structure. The stack commands (\texttt{pushd}, \texttt{popd}, \texttt{dirs}) enable more complex navigation patterns, such as saving a location before exploring elsewhere.
+
+To expand on this, the search commands (\texttt{find}, \texttt{grep} variants and \texttt{locate} variants) allow for targeted file searches based on name, types, content, patterns or expressions.
+
+\subsubsection{File Management}
+
+This category includes commands that allow for the creation, modification, deletion, and inspection of files and directories. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{cat:} Concatenates and prints the contents of one or more files to standard output.
+    \item \texttt{cp:} Copies one or more files to a specified location.
+    \item \texttt{mv:} Moves or renames files and directories.
+    \item \texttt{rm:} Removes files.
+    \item \texttt{mkdir:} Creates new directories.
+    \item \texttt{rmdir:} Removes empty directories.
+    \item \texttt{touch:} Creates an empty file or updates the timestamp of an existing file.
+    \item \texttt{rename:} Renames files according to a specified pattern.
+    \item \texttt{ln:} Creates hard or symbolic links to files.
+    \item \texttt{chmod:} Changes the access permissions of files or directories.
+    \item \texttt{chown:} Changes the owner and group of files or directories.
+    \item \texttt{chgrp:} Changes the group ownership of files or directories.
+    \item \texttt{chattr:} Changes extended attributes on a Linux filesystem.
+    \item \texttt{lsattr:} Lists extended attributes on a Linux ext2 filesystem.
+    \item \texttt{getfacl:} Retrieves the access control list of a file.
+    \item \texttt{setfacl:} Sets the access control list of a file.
+    \item \texttt{stat:} Displays detailed status information about a file or filesystem.
+    \item \texttt{file:} Determines and prints the type of a file.
+    \item \texttt{lsof:} Lists all open files and the processes using them.
+    \item \texttt{diff:} Displays the differences between two files.
+    \item \texttt{wc:} Prints byte, word, and line counts for a file.
+    \item \texttt{split:} Splits a file into fixed-size pieces.
+    \item \texttt{tee:} Reads from standard input and writes to both standard output and one or more files.
+    \item \texttt{dd:} Converts and copies a file at a low level, including raw disk access.
+    \item \texttt{tar:} Stores, lists, or extracts files in an archive.
+    \item \texttt{gzip}, \texttt{bzip2}, \texttt{xz:} Compress or decompress files using different algorithms.
+    \item \texttt{zip:} Packages and compresses files into a zip archive.
+    \item \texttt{md5sum}, \texttt{sha256sum:} Compute and verify checksums of files.
+    \item \texttt{xxd:} Produces a hexdump of a file or converts a hexdump back to binary.
+    \item \texttt{du:} Estimates the disk space used by files and directories.
+    \item \texttt{df:} Displays the amount of free and used disk space on filesystems.
+\end{itemize}
+
+\subsubsection{Scheduling}
+
+This category includes commands that allow for the timing, scheduling, and delayed execution of tasks. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{at:} Schedules a command to run once at a specified time.
+    \item \texttt{cron:} A daemon that executes scheduled commands at defined intervals.
+    \item \texttt{crontab:} Edits or displays the cron table of scheduled tasks for a user.
+    \item \texttt{sleep:} Pauses execution for a specified duration.
+    \item \texttt{watch:} Repeatedly executes a command at a set interval and displays its output.
+    \item \texttt{timeout:} Runs a command and terminates it if it exceeds a specified time limit.
+    \item \texttt{nohup:} Runs a command that continues after the user logs out, immune to hangup signals.
+\end{itemize}
+
+\subsubsection{Coding and Scripting}
+
+This category includes commands that support the writing, execution, and processing of scripts and programs. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{bash:} The GNU Bourne-Again Shell interpreter, used to execute shell scripts.
+    \item \texttt{source:} Executes commands from a file in the current shell environment.
+    \item \texttt{eval:} Evaluates and executes a string as a shell command.
+    \item \texttt{exec:} Replaces the current shell process with a specified command.
+    \item \texttt{make:} Automates compilation and building of programs from a Makefile.
+    \item \texttt{sed:} A stream editor for filtering and transforming text.
+    \item \texttt{tr:} Translates, squeezes, or deletes characters from input.
+    \item \texttt{cut:} Extracts sections from each line of a file.
+    \item \texttt{sort:} Sorts lines of text files.
+    \item \texttt{uniq:} Filters adjacent duplicate lines from sorted input.
+    \item \texttt{xargs:} Builds and executes commands from standard input arguments.
+    \item \texttt{echo:} Displays a line of text or a variable's value.
+    \item \texttt{printf:} Formats and prints data according to a specified format string.
+    \item \texttt{expr:} Evaluates arithmetic or string expressions.
+    \item \texttt{test:} Evaluates a conditional expression and returns a success or failure status.
+    \item \texttt{read:} Reads a line from standard input into a variable.
+    \item \texttt{vi:} A terminal-based text editor.
+    \item \texttt{strace:} Traces system calls and signals made by a running process.
+    \item \texttt{openssl:} A command-line tool for cryptographic operations, including encryption and certificate management.
+    \item \texttt{curl:} Transfers data to or from a server using various protocols.
+    \item \texttt{wget:} Retrieves files from the web via HTTP, HTTPS, or FTP.
+\end{itemize}
+
+\subsubsection{Partitioning and Filesystem Management}
+
+This category includes commands that allow for the management of disk partitions and filesystems. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{fdisk:} A partition table manipulator for creating and modifying disk partitions.
+    \item \texttt{cfdisk:} A curses-based partition table manipulator with an interactive interface.
+    \item \texttt{fsck:} Checks and repairs inconsistencies in a filesystem.
+    \item \texttt{mount:} Attaches a filesystem to a specified directory in the directory tree.
+    \item \texttt{umount:} Detaches a mounted filesystem.
+    \item \texttt{lsblk:} Lists information about block devices and their partition structure.
+    \item \texttt{quota:} Displays disk usage and limits for a user or group.
+    \item \texttt{sync:} Flushes filesystem buffers, writing cached data to disk.
+\end{itemize}
+
+\subsubsection{Process Management}
+
+This category includes commands that allow for the monitoring, control, and management of running processes. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{ps:} Displays a snapshot of currently running processes and their status.
+    \item \texttt{top:} Provides a real-time, dynamic view of running processes and system resource usage.
+    \item \texttt{htop:} An interactive process viewer with a more detailed interface than \texttt{top}.
+    \item \texttt{kill:} Sends a signal to a process, identified by its PID.
+    \item \texttt{killall:} Sends a signal to all processes matching a given name.
+    \item \texttt{pkill:} Sends a signal to processes matching a name or other attributes.
+    \item \texttt{pgrep:} Lists the PIDs of processes matching a name or other attributes.
+    \item \texttt{bg:} Resumes a suspended job and runs it in the background.
+    \item \texttt{fg:} Brings a background job to the foreground.
+    \item \texttt{jobs:} Lists the active jobs in the current shell session.
+    \item \texttt{nice:} Starts a process with a specified scheduling priority.
+    \item \texttt{renice:} Changes the scheduling priority of a running process.
+    \item \texttt{wait:} Pauses execution until a specified background process completes.
+    \item \texttt{fuser:} Identifies which processes are using a specified file or socket.
+    \item \texttt{time:} Measures the time taken to execute a command.
+    \item \texttt{uptime:} Shows how long the system has been running and the current load average.
+    \item \texttt{free:} Displays the total, used, and available memory and swap space.
+    \item \texttt{vmstat:} Reports statistics on virtual memory, processes, and CPU activity.
+    \item \texttt{iostat:} Reports CPU and I/O statistics for devices and partitions.
+    \item \texttt{screen:} Multiplexes a terminal session, allowing multiple virtual terminals to run simultaneously.
+    \item \texttt{tmux:} A terminal multiplexer that allows multiple sessions, windows, and panes.
+\end{itemize}
+
+\subsubsection{Network Management}
+
+This category includes commands that allow for the configuration, monitoring, and use of network interfaces and connections. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{ifconfig:} Configures or displays the configuration of a network interface.
+    \item \texttt{ifup}, \texttt{ifdown:} Brings a network interface up or takes it down.
+    \item \texttt{ip:} Manages network interfaces, routing tables, and tunnels.
+    \item \texttt{netstat:} Displays network connections, routing tables, and interface statistics.
+    \item \texttt{ss:} Displays socket statistics, serving as a faster alternative to \texttt{netstat}.
+    \item \texttt{ping:} Tests connectivity to a remote host by sending ICMP echo requests.
+    \item \texttt{traceroute:} Traces the route packets take to reach a remote host.
+    \item \texttt{mtr:} Combines the functionality of \texttt{ping} and \texttt{traceroute} into a single network diagnostic tool.
+    \item \texttt{dig:} Performs DNS lookups and displays the results.
+    \item \texttt{nslookup:} Queries DNS servers interactively to resolve hostnames or IP addresses.
+    \item \texttt{hostname:} Prints or sets the system's hostname.
+    \item \texttt{ssh:} Opens a secure encrypted shell session to a remote host.
+    \item \texttt{scp:} Securely copies files between hosts over an SSH connection.
+    \item \texttt{sftp:} Transfers files securely to or from a remote host using the SSH protocol.
+    \item \texttt{ftp:} Transfers files to or from a remote host using the File Transfer Protocol.
+    \item \texttt{rsync:} Synchronizes files and directories between locations, locally or over a network.
+    \item \texttt{nc:} Reads and writes data across network connections using TCP or UDP.
+    \item \texttt{nft:} Manages packet filtering rules using the nftables framework.
+    \item \texttt{ethtool:} Queries and configures Ethernet device settings.
+    \item \texttt{rcp:} Copies files between two machines on a network.
+\end{itemize}
+
+\subsubsection{User Management}
+
+This category includes commands that allow for the creation, modification, and monitoring of user accounts and sessions. The following commands are included with a short description of their functionality:
+
+\begin{itemize}
+    \item \texttt{useradd:} Creates a new user account.
+    \item \texttt{userdel:} Deletes an existing user account.
+    \item \texttt{usermod:} Modifies an existing user account's properties.
+    \item \texttt{groupadd:} Creates a new user group.
+    \item \texttt{groupdel:} Deletes an existing user group.
+    \item \texttt{groupmod:} Modifies an existing group's properties.
+    \item \texttt{groups:} Prints the names of the groups a user belongs to.
+    \item \texttt{passwd:} Changes a user's password.
+    \item \texttt{chpasswd:} Updates passwords for multiple users from a batch file.
+    \item \texttt{su:} Substitutes the current user identity with another user's.
+    \item \texttt{sudo:} Executes a command with the privileges of another user, typically root.
+    \item \texttt{chroot:} Runs a command in an environment with a different root directory.
+    \item \texttt{id:} Prints the user ID and group IDs of the current or a specified user.
+    \item \texttt{whoami:} Prints the username of the current user.
+    \item \texttt{who:} Lists all users currently logged into the system.
+    \item \texttt{w:} Shows who is logged on and what command each user is running.
+    \item \texttt{users:} Prints a list of usernames currently logged into the system.
+    \item \texttt{logname:} Prints the login name of the current user.
+    \item \texttt{login:} Initiates a login session for a user.
+    \item \texttt{logout:} Exits the current login shell.
+    \item \texttt{ulimit:} Sets or displays resource limits for user processes.
+    \item \texttt{umask:} Sets or displays the default file creation permission mask.
+    \item \texttt{write:} Sends a message directly to another logged-in user's terminal.
+\end{itemize}
+

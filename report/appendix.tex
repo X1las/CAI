@@ -53,7 +53,7 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{clear\_console} & Clear the terminal screen/console (bash) \\
 \texttt{cmp}         & Compare two files \\
 \texttt{comm}        & Compare two sorted files line by line \\
-\texttt{command} \textbullet  & Run a command, ignoring shell functions \\
+\texttt{command} \textbullet  & Run a command - ignoring shell functions \\
 \texttt{continue} \textbullet & Resume the next iteration of a loop \\
 \texttt{cp}          & Copy one or more files to another location \\
 \texttt{cpio}        & Copy files to and from archives \\
@@ -65,15 +65,16 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \hline
 \texttt{date}        & Display or change the date \& time \\
 \texttt{dc}          & Desk calculator \\
-\texttt{dd}          & Data duplicator --- convert and copy a file \\
+\texttt{dd}          & Data duplicator --- convert and copy a file, write disk headers, boot records \\
 \texttt{ddrescue}    & Data recovery tool \\
+\texttt{ddrescuelog}  & Tool for ddrescue logfiles \\
 \texttt{declare} \textbullet  & Declare variables and give them attributes \\
 \texttt{df}          & Display free disk space \\
-\texttt{diff}        & Display differences between two files \\
+\texttt{diff}        & Display the differences between two files \\
 \texttt{diff3}       & Show differences among three files \\
 \texttt{dig}         & DNS lookup \\
 \texttt{dir}         & Briefly list directory contents \\
-\texttt{dircolors}   & Colour setup for \texttt{ls} \\
+\texttt{dircolors}   & Colour setup for 'ls' \\
 \texttt{dirname}     & Convert a full pathname to just a path \\
 \texttt{dirs} \textbullet     & Display list of remembered directories \\
 \texttt{dos2unix}    & Windows/MAC to UNIX text file format converter \\
@@ -82,7 +83,7 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{du}          & Estimate file space usage \\
 \hline
 \texttt{echo} \textbullet     & Display message on screen \\
-\texttt{egrep}       & Search file(s) for lines matching an extended expression \\
+\texttt{egrep}       & Search file(s) for lines that match an extended expression \\
 \texttt{eject}       & Eject removable media \\
 \texttt{enable} \textbullet   & Enable and disable builtin shell commands \\
 \texttt{env}         & Environment variables \\
@@ -98,22 +99,23 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{fdformat}    & Low-level format a floppy disk \\
 \texttt{fdisk}       & Partition table manipulator for Linux \\
 \texttt{fg} \textbullet       & Send job to foreground \\
-\texttt{fgrep}       & Search file(s) for lines matching a fixed string \\
+\texttt{fgrep}       & Search file(s) for lines that match a fixed string \\
 \texttt{file}        & Determine file type \\
 \texttt{find}        & Search for files that meet a desired criteria \\
 \texttt{fmt}         & Reformat paragraph text \\
 \texttt{fold}        & Wrap text to fit a specified width \\
 \texttt{for}         & Expand words, and execute commands \\
+\texttt{format}      & Format disks or tapes \\
 \texttt{free}        & Display memory usage \\
 \texttt{fsck}        & File system consistency check and repair \\
 \texttt{ftp}         & File Transfer Protocol \\
 \texttt{function}    & Define function macros \\
-\texttt{fuser}       & Identify/kill the process accessing a file \\
+\texttt{fuser}       & Identify/kill the process that is accessing a file \\
 \hline
 \texttt{gawk}        & Find and replace text within file(s) \\
 \texttt{getopts} \textbullet  & Parse positional parameters \\
 \texttt{getfacl}     & Get file access control lists \\
-\texttt{grep}        & Search file(s) for lines matching a given pattern \\
+\texttt{grep}        & Search file(s) for lines that match a given pattern \\
 \texttt{groupadd}    & Add a user security group \\
 \texttt{groupdel}    & Delete a group \\
 \texttt{groupmod}    & Modify a group \\
@@ -132,10 +134,10 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{if}          & Conditionally perform a command \\
 \texttt{ifconfig}    & Configure a network interface \\
 \texttt{ifdown}      & Stop a network interface \\
-\texttt{ifup}        & Start a network interface \\
+\texttt{ifup}        & Start a network interface up \\
 \texttt{import}      & Capture an X server screen and save the image to file \\
 \texttt{install}     & Copy files and set attributes \\
-\texttt{iostat}      & Report CPU and I/O statistics \\
+\texttt{iostat}      & Report CPU and i/o statistics \\
 \texttt{ip}          & Routing, devices and tunnels \\
 \hline
 \texttt{jobs} \textbullet     & List active jobs \\
@@ -157,79 +159,104 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{look}        & Display lines beginning with a given string \\
 \texttt{lpc}         & Line printer control program \\
 \texttt{lpr}         & Print files \\
+\texttt{lprint}      & Print a file \\
+\texttt{lprintd}     & Delete a print job \\
+\texttt{lprintq}     & List the print queue \\
 \texttt{lprm}        & Remove jobs from the print queue \\
-\texttt{ls}          & List information about file(s) \\
-\texttt{lsattr}      & List file attributes on a Linux ext2 file system \\
+\texttt{lsattr}      & List file attributes on a Linux second extended file system \\
 \texttt{lsblk}       & List block devices \\
+\texttt{ls}          & List information about file(s) \\
 \texttt{lsof}        & List open files \\
 \texttt{lspci}       & List all PCI devices \\
 \hline
 \texttt{make}        & Recompile a group of programs \\
 \texttt{man}         & Help manual \\
-\texttt{mapfile} \textbullet  & Read lines from stdin into an indexed array variable \\
+\texttt{mapfile} \textbullet  & Read lines from standard input into an indexed array variable \\
 \texttt{md5sum}      & Compute and check MD5 message digest \\
 \texttt{mkdir}       & Create new folder(s) \\
 \texttt{mkfifo}      & Make FIFOs (named pipes) \\
+\texttt{mkfile}      & Make a file \\
+\texttt{mkisofs}     & Create a hybrid ISO9660/JOLIET/HFS filesystem \\
+\texttt{mknod}       & Make block or character special files \\
 \texttt{mktemp}      & Make a temporary file \\
+\texttt{modprobe}    & Add or remove modules from the Linux Kernel \\
 \texttt{more}        & Display output one screen at a time \\
+\texttt{most}        & Browse or page through a text file \\
 \texttt{mount}       & Mount a file system \\
+\texttt{mtools}      & Manipulate MS-DOS files \\
 \texttt{mtr}         & Network diagnostics (traceroute/ping) \\
 \texttt{mv}          & Move or rename files or directories \\
+\texttt{mmv}         & Mass move and rename (files) \\
 \hline
 \texttt{nc}          & Netcat, read and write data across networks \\
-\texttt{netstat}     & Networking connections/statistics \\
-\texttt{nft}         & Packet filtering and classification (nftables) \\
+\texttt{netstat}     & Networking connections/stats \\
+\texttt{nft}         & nftables for packet filtering and classification \\
 \texttt{nice}        & Set the priority of a command or job \\
 \texttt{nl}          & Number lines and write files \\
 \texttt{nohup}       & Run a command immune to hangups \\
+\texttt{notify-send} & Send desktop notifications \\
 \texttt{nslookup}    & Query Internet name servers interactively \\
 \hline
+\texttt{op}          & Operator access \\
+\texttt{open}        & Open a file in its default application \\
 \texttt{openssl}     & OpenSSL command line \\
 \hline
 \texttt{passwd}      & Modify a user password \\
 \texttt{paste}       & Merge lines of files \\
+\texttt{pathchk}     & Check file name portability \\
+\texttt{Perf}        & Performance analysis tools for Linux \\
 \texttt{ping}        & Test a network connection \\
 \texttt{pgrep}       & List processes by name \\
 \texttt{pkill}       & Kill processes by name \\
 \texttt{popd} \textbullet     & Restore the previous value of the current directory \\
 \texttt{pr}          & Prepare files for printing \\
+\texttt{printcap}    & Printer capability database \\
 \texttt{printenv}    & Print environment variables \\
 \texttt{printf} \textbullet   & Format and print data \\
 \texttt{ps}          & Process status \\
 \texttt{pushd} \textbullet    & Save and then change the current directory \\
+\texttt{pv}          & Monitor the progress of data through a pipe \\
 \texttt{pwd} \textbullet      & Print working directory \\
 \hline
 \texttt{quota}       & Display disk usage and limits \\
+\texttt{quotacheck}  & Scan a file system for disk usage \\
 \hline
+\texttt{ram}         & ram disk device \\
+\texttt{rar}         & Archive files with compression \\
 \texttt{rcp}         & Copy files between two machines \\
 \texttt{read} \textbullet     & Read a line from standard input \\
-\texttt{readarray} \textbullet & Read from stdin into an array variable \\
+\texttt{readarray} \textbullet & Read from STDIN into an array variable \\
 \texttt{readonly} \textbullet & Mark variables/functions as readonly \\
 \texttt{reboot}      & Reboot the system \\
 \texttt{rename}      & Rename files \\
 \texttt{renice}      & Alter priority of running processes \\
+\texttt{remsync}     & Synchronize remote files via email \\
 \texttt{return} \textbullet   & Exit a shell function \\
 \texttt{rev}         & Reverse lines of a file \\
 \texttt{rm}          & Remove files \\
 \texttt{rmdir}       & Remove folder(s) \\
+\texttt{rmmod}       & Simple program to remove a module from the Linux Kernel \\
 \texttt{rsync}       & Remote file copy (synchronize file trees) \\
 \hline
 \texttt{screen}      & Multiplex terminal, run remote shells via ssh \\
 \texttt{scp}         & Secure copy (remote file copy) \\
+\texttt{sdiff}       & Merge two files interactively \\
 \texttt{sed}         & Stream editor \\
 \texttt{select}      & Accept user choices via keyboard input \\
 \texttt{seq}         & Print numeric sequences \\
 \texttt{set} \textbullet      & Manipulate shell variables and functions \\
-\texttt{setfacl}     & Set file access control lists \\
+\texttt{setfacl}     & Set file access control lists. \\
 \texttt{sftp}        & Secure file transfer program \\
-\texttt{sha256sum}   & Compute and check SHA256 checksums \\
+\texttt{sha256sum}   & Compute and check SHA256 (256-bit) checksums \\
 \texttt{shift} \textbullet    & Shift positional parameters \\
 \texttt{shopt} \textbullet    & Shell options \\
 \texttt{shuf}        & Generate random permutations \\
 \texttt{shutdown}    & Shutdown or restart Linux \\
 \texttt{sleep}       & Delay for a specified time \\
+\texttt{slocate}     & Find files \\
+\texttt{sntp}        & Simple Network Time Protocol client program \\
 \texttt{sort}        & Sort text files \\
-\texttt{source} \textbullet   & Run commands from a file \\
+\texttt{source} \textbullet   & Run commands from a file '.' \\
 \texttt{split}       & Split a file into fixed-size pieces \\
 \texttt{ss}          & Socket statistics \\
 \texttt{ssh}         & Secure shell client (remote login program) \\
@@ -241,6 +268,7 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{suspend} \textbullet  & Suspend execution of this shell \\
 \texttt{sync}        & Synchronize data on disk with memory \\
 \hline
+\texttt{tabs}        & Set tabs on a terminal \\
 \texttt{tac}         & Concatenate and write files in reverse \\
 \texttt{tail}        & Output the last part of a file \\
 \texttt{tar}         & Store, list or extract files in an archive \\
@@ -269,14 +297,21 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{unexpand}    & Convert spaces to tabs \\
 \texttt{uniq}        & Uniquify files \\
 \texttt{units}       & Convert units from one scale to another \\
+\texttt{unix2dos}    & UNIX to Windows or MAC text file format converter \\
+\texttt{unrar}       & Extract files from a rar archive \\
 \texttt{unset} \textbullet    & Remove variable or function names \\
+\texttt{unshar}      & Unpack shell archive scripts \\
 \texttt{until}       & Execute commands (until error) \\
 \texttt{uptime}      & Show uptime \\
 \texttt{useradd}     & Create new user account \\
 \texttt{userdel}     & Delete a user account \\
 \texttt{usermod}     & Modify user account \\
 \texttt{users}       & List users currently logged in \\
+\texttt{uuencode}    & Encode a binary file \\
+\texttt{uudecode}    & Decode a file created by uuencode \\
 \hline
+\texttt{v}           & Verbosely list directory contents ('ls -l -b') \\
+\texttt{vdir}        & Verbosely list directory contents ('ls -l -b') \\
 \texttt{vi}          & Text editor \\
 \texttt{vmstat}      & Report virtual memory statistics \\
 \hline
@@ -284,15 +319,19 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{wait} \textbullet     & Wait for a process to complete \\
 \texttt{watch}       & Execute/display a program periodically \\
 \texttt{wc}          & Print byte, word, and line counts \\
-\texttt{whereis}     & Search \$PATH, man pages and source files for a program \\
-\texttt{which}       & Search \$PATH for a program file \\
+\texttt{whereis}     & Search the user's \$path, man pages and source files for a program \\
+\texttt{which}       & Search the user's \$path for a program file \\
 \texttt{while}       & Execute commands \\
 \texttt{who}         & Print all usernames currently logged in \\
-\texttt{whoami}      & Print the current user id and name \\
+\texttt{whoami}      & Print the current user id and name ('id -un') \\
 \texttt{wget}        & Retrieve web pages or files via HTTP, HTTPS or FTP \\
+\texttt{wl-copy}     & Copy to clipboard (Wayland) \\
+\texttt{wl-paste}    & Paste from clipboard (Wayland) \\
 \texttt{write}       & Send a message to another user \\
 \hline
 \texttt{xargs}       & Execute utility, passing constructed argument list(s) \\
+\texttt{xclip}       & Copy to clipboard (X11) \\
+\texttt{xdg-open}    & Open a file or URL in the user's preferred application. \\
 \texttt{xxd}         & Make a hexdump or do the reverse \\
 \texttt{xz}          & Compress or decompress .xz and .lzma files \\
 \hline
@@ -304,5 +343,3 @@ The following is a complete A--Z index of Linux commands and utilities, sourced 
 \texttt{\#}          & Comment / remark \\
 \hline
 \end{longtable}
-
-\noindent\small{Source: \url{https://ss64.com/bash/}. Commands marked \textbullet{} are Bash built-ins.}
