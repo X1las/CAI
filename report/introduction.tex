@@ -27,7 +27,25 @@ The research question is then as follows:
 
 To address these questions, we will first compile a list of terminal commands on linux that can be used to outline a base of actions for the simulation. This will be limited to linux for the sake of simplicity, but the process can be expanded to include Windows commands as well.
 
-\subsection{Linux Command Inventory}
+\subsection{The Linux Commandline}
+
+\subsubsection{Processes and Jobs}
+
+For references on processes see our previous work \fullcite{AsyncSync} as well as \fullcite[ch. 7]{GnuBashManual} for details pertaining jobs and and job management.
+
+There are four important keywords in this category, which are processes, threads, pipelines and jobs. Processes can be somewhat loosely defined as we discovered in our prior study \cite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. 
+
+Threads can be generally split into two categories, virtual threads (also known as user-level threads) and kernel threads, where the former are managed by the process itself and the latter are managed by the operating system's scheduler, which is usually CRON in the linux environment.
+
+A pipeline is a 
+
+\subsubsection{Files, file systems and Partitions}
+
+\subsubsection{User Management and Groups}
+
+\subsubsection{Network Utilities}
+
+
 
 A list of the linux commands used in this paper is included in \autoref{AppendixLinuxCommands}. This list is not an exhaustive list of all commands available on linux based distributions, it is based on the commands found on \fullcite{CommandLineReference}, which includes all the built-in commands for the bash shell. For a full list of linux commands, see \fullcite{LinuxManualPages}.
 
@@ -40,10 +58,6 @@ To begin with, we can subdivide the commands into the underlying categories of a
     \item \textbf{File Management}
     \item \textbf{Scheduling}
     \item \textbf{Coding and Scripting}
-    \item \textbf{Partitioning and Filesystem Management}
-    \item \textbf{Process Management}
-    \item \textbf{Network Management}
-    \item \textbf{User Management}
 \end{itemize}
 
 It is important to note that these categories are neither definitive nor exhaustive. There are a great many commands that we will not be able to cover in this paper, in addition to several commands being able to fit into multiple categories. The categorization is meant for ease of reference and to provide a framework for understanding the different types of actions that could potentially be taken by an AI model in a local system.
