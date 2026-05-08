@@ -29,23 +29,29 @@ To address these questions, we will first compile a list of terminal commands on
 
 \subsection{The Linux Commandline}
 
+
+
 \subsubsection{Processes and Jobs}
 
-For references on processes see our previous work \fullcite{AsyncSync} as well as \fullcite[ch. 7]{GnuBashManual} for details pertaining jobs and and job management.
+For references on processes see our previous work \textcite{AsyncSync} as well as \textcite[ch. 7]{GnuBashManual} for details pertaining jobs and and job management.
 
-There are four important keywords in this category, which are processes, threads, pipelines and jobs. Processes can be somewhat loosely defined as we discovered in our prior study \cite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. 
+There are four important keywords in this category, which are processes, threads, pipelines and jobs. Processes can be somewhat loosely defined as we discovered in our prior study \parencite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. 
 
-Threads can be generally split into two categories, virtual threads (also known as user-level threads) and kernel threads, where the former are managed by the process itself and the latter are managed by the operating system's scheduler, which is usually CRON in the linux environment.
+Threads can be generally split into two categories, virtual threads (also known as user-level threads) and kernel threads, where the former are managed by the process itself and the latter are managed by the operating system's scheduler, which is usually EEVDF in the linux environment. Processes are usually scheduled to run on kernel threads, and the kernel threads are scheduled to have equal time allotted on the CPU.
 
-A pipeline is a 
+A pipeline is a sequence of processes chained together such that the output of one process is the input of the next. This allows for complex data processing and manipulation using simple commands.
+
+Lastly, jobs are a subgenre of processes that are managed by the shell. They are triggered by the user to carry out the task of a command and can be run in the foreground or background. The shell provides built-in commands to manage jobs, such as \texttt{jobs}, \texttt{fg}, \texttt{bg}, and \texttt{kill}.
+
+Where processes usually differ from jobs is that they can be triggered and scheduled by the operating system without user involvement. Jobs are generally more manageable for users, as they are directly tied to the shell and can be easily manipulated using built-in commands. Processes, on the other hand, can be more complex and may require more advanced tools for management and monitoring. Due to their nature as well, processes can be more anonymous and harder to track as well, seeing as they can be triggered by other processes and may not have a direct association with a user or shell session.
+
+Commands such as \texttt{ps}, \texttt{top}, \texttt{htop} and \texttt{}
 
 \subsubsection{Files, file systems and Partitions}
 
 \subsubsection{User Management and Groups}
 
 \subsubsection{Network Utilities}
-
-
 
 A list of the linux commands used in this paper is included in \autoref{AppendixLinuxCommands}. This list is not an exhaustive list of all commands available on linux based distributions, it is based on the commands found on \fullcite{CommandLineReference}, which includes all the built-in commands for the bash shell. For a full list of linux commands, see \fullcite{LinuxManualPages}.
 
