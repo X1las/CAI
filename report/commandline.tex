@@ -1,0 +1,41 @@
+A list of the linux commands used in this paper is included in \autoref{AppendixLinuxCommands}. This list is not an exhaustive list of all commands available on linux based distributions, it is based on the commands found on \textcite{CommandLineReference}, which includes all the built-in commands for the bash shell. For a full list of linux commands, see \textcite{LinuxManPages}.
+
+For the sake of the keeping the simulation simple, we will focus on a subset of commands that most obviously relate to the problem at hand. Some of the commands included in the list are not directly related to the problem, however they pose interesting possibilities for future research that will be brought up in the discussion section of this paper.
+
+\subsection{Processes and Jobs}
+
+For references on processes see our previous work \textcite{AsyncSync} as well as \textcite[ch. 7]{GnuBashManual} for details pertaining jobs and job management.
+
+There are four important keywords in this category, which are processes, threads, pipelines and jobs. Processes can be somewhat loosely defined as we discovered in our prior study \parencite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. 
+
+Threads can be generally split into two categories, virtual threads (also known as user-level threads) and kernel threads, where the former are managed by the process itself and the latter are managed by the operating system's scheduler, which is usually EEVDF \parencite[EEVDF Scheduler]{KernelSchedManual} in the linux environment. Processes are usually scheduled to run on kernel threads, and the kernel threads are scheduled to have equal time allotted on the CPU.
+
+A pipeline is a sequence of processes chained together such that the output of one process is the input of the next. This allows for complex data processing and manipulation using simple commands.
+
+Lastly, jobs are a subgenre of processes that are managed by the shell. They are triggered by the user to carry out the task of a command and can be run in the foreground or background. The shell provides built-in commands to manage jobs, such as \texttt{jobs}, \texttt{fg}, \texttt{bg}, and \texttt{kill}.
+
+Where processes usually differ from jobs is that they can be triggered and scheduled by the operating system without user involvement. Jobs are generally more manageable for users, as they are directly tied to the shell and can be easily manipulated using built-in commands. Processes, on the other hand, can be more complex and may require more advanced tools for management and monitoring. Due to their nature as well, processes can be more anonymous and harder to track as well, seeing as they can be triggered by other processes and may not have a direct association with a user or shell session.
+
+Commands such as \texttt{ps}, \texttt{top}, \texttt{htop} and \texttt{pgrep} can be used to monitor and search through processes, whilst commands such as \texttt{pkill}, \texttt{killall} in addition to \texttt{kill} all allow for termination of processes. 
+
+In addition to this, the EEVDF scheduler \parencite[EEVDF]{KernelSchedManual} allows for scheduling affinity using the \texttt{sched\_setattr()} system call, which the user can call on directly on starting a process using the \texttt{nice} command, or after the process has started with \texttt{renice}. This allows for a user to give a process higher or lower priority on the CPU, which can make some processes run with more CPU time than others and vice versa. This can be used to give a process more resources to run, or to starve a process of resources and make it run slower.
+
+In addition to these, there are also commands such as \texttt{wait} which can be used to pause the execution of a process until another process has finished, and \texttt{fuser} which can be used to identify which processes are using a specific file or socket. This can be useful for identifying which processes are interacting with each other and potentially interfering with each other.
+
+\subsection{Files, file systems and Partitions}
+
+\subsection{User Management and Groups}
+
+\subsection{Network Utilities}
+
+
+To begin with, we can subdivide the commands into the underlying categories of actions:
+
+\begin{itemize}
+    \item \textbf{Navigation and Search}
+    \item \textbf{File Management}
+    \item \textbf{Scheduling}
+    \item \textbf{Coding and Scripting}
+\end{itemize}
+
+It is important to note that these categories are neither definitive nor exhaustive. There are a great many commands that we will not be able to cover in this paper, in addition to several commands being able to fit into multiple categories. The categorization is meant for ease of reference and to provide a framework for understanding the different types of actions that could potentially be taken by an AI model in a local system.
