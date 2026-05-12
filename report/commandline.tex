@@ -4,15 +4,15 @@ For the sake of the keeping the simulation simple, we will focus on a subset of 
 
 \subsection{Processes and Jobs}
 
-For references on processes see our previous work \textcite{AsyncSync} as well as \textcite[ch. 7]{GnuBashManual} for details pertaining jobs and job management.
+For references on processes see our previous work \citetitle{AsyncSync} \parencite{AsyncSync} as well as \citetitle[ch. 7]{GnuBashManual} \parencite{GnuBashManual} for details pertaining jobs and job management.
 
 There are four important keywords in this category, which are processes, threads, pipelines and jobs. Processes can be somewhat loosely defined as we discovered in our prior study \parencite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. 
 
 Threads can be generally split into two categories, virtual threads (also known as user-level threads) and kernel threads, where the former are managed by the process itself and the latter are managed by the operating system's scheduler, which is usually EEVDF \parencite[EEVDF Scheduler]{KernelSchedManual} in the linux environment. Processes are usually scheduled to run on kernel threads, and the kernel threads are scheduled to have equal time allotted on the CPU.
 
-A pipeline is a sequence of processes chained together such that the output of one process is the input of the next. This allows for complex data processing and manipulation using simple commands.
+A pipeline in the context of the linux commandline refers to the mechanism of connecting the output of one process to the input of another process using the \texttt{|} operator \parencite{GFGPiping}. This is not related to the concept of pipelines in the context of data processing or machine learning, but it is a powerful tool for chaining commands together and creating complex workflows. An example of this would be the command \texttt{ps aux | grep python}, which would list all the processes running on the system and then filter the results to show only those that contain the word "python". This allows for a user to easily search through the processes and find specific ones that they are interested in.
 
-Lastly, jobs are a subgenre of processes that are managed by the shell. They are triggered by the user to carry out the task of a command and can be run in the foreground or background. The shell provides built-in commands to manage jobs, such as \texttt{jobs}, \texttt{fg}, \texttt{bg}, and \texttt{kill}.
+Lastly, by cross referencing \textcite{GnuBashManual,GFGJobSPEC,GFGJobScheduling,GFGCronCommand}, jobs are a concept in the linux commandline manuals that refer to processes and pipelines that are either started or scheduled  to run by the user in a shell session or from the terminal. They are given a process ID (PID) on creation, regardless of whether they are are multiple commands tied together in a pipeline or a single command. They can be run in the foreground or background, and they can be managed using built-in commands such as \texttt{jobs}, \texttt{fg}, \texttt{bg}, and \texttt{kill}. Using cron, a user can also schedule jobs to run at specific times or intervals, which can be useful for automating tasks and running processes without user intervention.
 
 Where processes usually differ from jobs is that they can be triggered and scheduled by the operating system without user involvement. Jobs are generally more manageable for users, as they are directly tied to the shell and can be easily manipulated using built-in commands. Processes, on the other hand, can be more complex and may require more advanced tools for management and monitoring. Due to their nature as well, processes can be more anonymous and harder to track as well, seeing as they can be triggered by other processes and may not have a direct association with a user or shell session.
 
@@ -23,6 +23,8 @@ In addition to this, the EEVDF scheduler \parencite[EEVDF]{KernelSchedManual} al
 In addition to these, there are also commands such as \texttt{wait} which can be used to pause the execution of a process until another process has finished, and \texttt{fuser} which can be used to identify which processes are using a specific file or socket. This can be useful for identifying which processes are interacting with each other and potentially interfering with each other.
 
 \subsection{Files, file systems and Partitions}
+
+
 
 \subsection{User Management and Groups}
 
