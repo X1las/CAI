@@ -15,13 +15,13 @@ It is important to note that these categories are neither definitive nor exhaust
 
 \subsection{Processes and Jobs}
 
-Process management forms the core of how AI agents can detect, monitor, and interact with each other on a shared Linux system. Understanding the distinction between processes, threads, pipelines, and jobs, as well as the commands available to manipulate them, is essential for both offensive and defensive strategies in an adversarial AI context.
+Processes are a fundamental unit of execution in the Linux operating system, the management of which oversees all actions taken on the system and by the system. Understanding how these processes work, how they can be monitored and affected by the user, commands, and other processes is crucial in understanding how AI agents could operate in our simulated environment, and how they could potentially interact with each other.
 
-For references on processes see our previous work \citetitle{AsyncSync} \parencite{AsyncSync} as well as \citetitle[ch. 7]{GnuBashManual} \parencite{GnuBashManual} for details pertaining jobs and job management.
+For references on processes we refer to our previous work \citetitle{AsyncSync} \parencite{AsyncSync}, this report will not cover the finer details of process or thread management, but rather what they mean for the commandline.
 
 \subsubsection{Process Architecture and Concepts}
 
-There are four important keywords in this category, which are processes, threads, pipelines and jobs. Processes can be somewhat loosely defined as we discovered in our prior study \parencite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. Each process has its own virtual address space, preventing it from directly accessing the memory of other processes. This isolation is enforced by the kernel and provides fundamental security boundaries between processes.
+There are four important keywords in this category, which are \textit{processes}, \textit{threads}, \textit{pipelines} and \textit{jobs}. Processes can be somewhat loosely defined as we discovered in our prior study \parencite{AsyncSync}, however they are generally considered to be instances of code that are running in an isolated memory space. Each process has its own virtual address space, preventing it from directly accessing the memory of other processes and this isolation is enforced by the kernel and provides fundamental security boundaries between processes.
 
 When a process is created through the \texttt{fork()} system call, it receives a unique Process ID (PID). The newly created child process is initially an exact copy of the parent process, including its memory space, open file descriptors, and execution context. The child can then use \texttt{exec()} to replace its memory space with a new program. This fork-exec model is fundamental to how shells launch commands and how processes spawn subprocesses.
 
