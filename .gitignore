@@ -1,6 +1,7 @@
 # Ignore everything
 python3venv
 report/*
+!report/report.pdf
 
 # But not these files:
 !.gitignore
