@@ -96,9 +96,9 @@ The Linux filesystem provides the fundamental infrastructure through which proce
 
 \subsubsection{Filesystem Hierarchy and Structure}
 
-Linux organizes storage into three conceptual levels: the virtual file system (VFS), individual filesystems, and files themselves. The VFS provides a unified interface that abstracts the underlying filesystem implementations, allowing different filesystem types to coexist and be accessed through a common set of system calls.
+Linux organizes storage into three conceptual levels: the virtual file system (VFS)\parencite{KernelVFS}, individual filesystems, and files themselves. The VFS provides a unified interface that abstracts the underlying filesystem implementations, allowing different filesystem types to coexist and be accessed through a common set of system calls.
 
-At the top level, Linux employs a single hierarchical directory tree rooted at \texttt{/}, unlike Windows which uses drive letters. All storage devices, regardless of their physical location or filesystem type, are mounted into this unified tree structure. Common mount points include \texttt{/home} for user directories, \texttt{/tmp} for temporary files, and \texttt{/proc} or \texttt{/sys} for kernel-provided pseudo-filesystems that expose process and system information.
+At the top level, Linux employs a single hierarchical directory tree\parencite{GFGUnixFileSystem} rooted at \texttt{/}, unlike Windows which uses drive letters. All storage devices, regardless of their physical location or filesystem type, are mounted into this unified tree structure. Common mount points include \texttt{/home} for user directories, \texttt{/tmp} for temporary files, and \texttt{/proc} or \texttt{/sys} for kernel-provided pseudo-filesystems that expose process and system information.
 
 Individual filesystems can be of various types, each with distinct characteristics. Modern Linux distributions commonly use ext4, which provides journaling for crash recovery and supports large files and volumes. Alternative filesystems include XFS (optimized for parallel I/O operations), Btrfs (supporting snapshots and copy-on-write), and F2FS (optimized for flash storage). The choice of filesystem affects performance characteristics, maximum file sizes, and available features, though the VFS layer ensures that basic operations remain consistent across types.
 
