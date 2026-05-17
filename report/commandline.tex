@@ -1,17 +1,6 @@
-A list of the linux commands used in this paper is included in \autoref{AppendixLinuxCommands}. This list is not an exhaustive list of all commands available on linux based distributions, it is based on the commands found on \textcite{CommandLineReference}, which includes all the built-in commands for the bash shell. For a full list of linux commands, see \textcite{LinuxManPages}.
+A list of the linux commands used in this paper is included in \autoref{AppendixLinuxCommands}. This list is not an exhaustive list of all commands available on linux based distributions, it is based on the commands found on \textcite{CommandLineReference}, which includes most if not all the built-in bash commands. For a full list of linux commands, see \textcite{LinuxManPages}.
 
-For the sake of the keeping the simulation simple, we will focus on a subset of commands that most obviously relate to the problem at hand. Some of the commands included in the list are not directly related to the problem, however they pose interesting possibilities for future research that will be brought up in the discussion section of this paper.
-
-To begin with, we can subdivide the commands into the underlying categories of actions:
-
-\begin{itemize}
-    \item \textbf{Navigation and Search}
-    \item \textbf{File Management}
-    \item \textbf{Scheduling}
-    \item \textbf{Coding and Scripting}
-\end{itemize}
-
-It is important to note that these categories are neither definitive nor exhaustive. There are a great many commands that we will not be able to cover in this paper, in addition to several commands being able to fit into multiple categories. The categorization is meant for ease of reference and to provide a framework for understanding the different types of actions that could potentially be taken by an AI model in a local system.
+To begin with, we can derive that commands on the linux commandline can affect most of anything on the system. Processes, files, network connections, users and even hardware can be affected by commands. This means that in order to understand what can be done locally, we need to understand how the system works at its most fundamental level and what commands gives way to manipulate.
 
 \subsection{Processes and Jobs}
 
@@ -90,11 +79,37 @@ The \texttt{fuser} command identifies processes using specific files or sockets,
 
 File locking mechanisms, accessible through the \texttt{flock} command or programmatically through system calls, allow processes to coordinate access to shared resources. An AI agent could use file locks both for legitimate synchronization and for detecting or blocking competing agents attempting to access the same resources.
 
-\subsection{Files, and filesystems}
+\subsection{Filesystems}
+
+Filesystems are the organizational structures that determine how data is stored and retrieved on a storage device. They define the way files are named, stored, and accessed, as well as how metadata is managed. Common filesystems in Linux include ext4, XFS, Btrfs, and F2FS, each with its own features and performance characteristics.
 
 The Linux filesystem provides the fundamental infrastructure through which processes interact with persistent data and communicate with each other. Understanding file operations is crucial for analyzing how AI agents might manipulate system state, hide information, or detect the presence of other agents.
 
-\subsubsection{Filesystem Hierarchy and Structure}
+\subsubsection{Blocks, Clusters and Sectors}
+
+Sectors refer to the smallest physical unit of storage on a traditional disk drive, typically 512 bytes of storage. Sectors used to be fixed in size due to the limitations and design of hard disk drives, but with modern solid-state drives the notion of sectors has become a logical abstraction rather than a physical constraint.
+
+When a collection of sectors is grouped together, it forms a block/cluster depending on the filesystem. A block is a logical unit of storage that the filesystem uses to manage files. The size of blocks can vary depending on the filesystem and the underlying storage device, but common block sizes are 4KB or 8KB. Clusters are essentially the same as blocks, but they are often used in the context of NTFS filesystems that windows computers use.
+
+Blocks are tracked by the filesystem's metadata structures, such as inodes or the superblock, which record which blocks are allocated to which files. When a file is created or modified, the filesystem allocates blocks to store the file's data and updates the metadata accordingly. The block size can impact performance and storage efficiency; larger blocks can reduce fragmentation but may waste space for small files, while smaller blocks can be more efficient for small files but may lead to increased fragmentation.
+
+Blocks are the smallest logical unit of storage, meaning that even if a file is only a few bytes in size, it will still occupy at least one block on the filesystem. This can lead to inefficiencies, especially for small files, as the unused space within the block cannot be utilized by other files.
+
+\subsubsection{Filesystems and The Virtual File System}
+
+The Virtual File System (or VFS for short) is an abstraction layer within the Linux kernel that provides a uniform interface for different filesystem implementations. It allows the kernel to support multiple filesystem types (such as ext4, XFS, Btrfs, etc.) without requiring changes to user-space applications. The VFS manages file operations, directory structures, and metadata in a way that is consistent across all supported filesystems.
+
+\subsubsection{Inodes}
+
+Inodes (index nodes) are data structures used by many Unix-like filesystems to represent files and directories. Each inode contains metadata about a file, including its size, permissions, ownership, timestamps (creation, modification, access), and pointers to the data blocks where the file's content is stored. The inode does not contain the filename itself; instead, directory entries map filenames to their corresponding inode numbers.
+
+When a file is accessed, the filesystem uses the directory structure to resolve the filename to an inode number, then retrieves the inode to access the file's metadata and data blocks. This separation of filename and file metadata allows for features like hard links, where multiple directory entries can point to the same inode, effectively giving a single file multiple names.
+
+\subsubsection{Partitions}
+
+Partitions are divisions of a storage device that allow it to be managed separately. Each partition can contain a different filesystem, enabling multiple operating systems or different types of data to coexist on the same physical device. Partitions are defined in a partition table, which is typically located at the beginning of the storage device. Common partitioning schemes include MBR (Master Boot Record) and GPT (GUID Partition Table).
+
+\subsubsection{LEFTOVERS}
 
 Linux organizes storage into three conceptual levels: the virtual file system (VFS)\parencite{KernelVFS}, individual filesystems, and files themselves. The VFS provides a unified interface that abstracts the underlying filesystem implementations, allowing different filesystem types to coexist and be accessed through a common set of system calls.
 
@@ -102,15 +117,11 @@ At the top level, Linux employs a single hierarchical directory tree\parencite{G
 
 Individual filesystems can be of various types, each with distinct characteristics. Modern Linux distributions commonly use ext4, which provides journaling for crash recovery and supports large files and volumes. Alternative filesystems include XFS (optimized for parallel I/O operations), Btrfs (supporting snapshots and copy-on-write), and F2FS (optimized for flash storage). The choice of filesystem affects performance characteristics, maximum file sizes, and available features, though the VFS layer ensures that basic operations remain consistent across types.
 
-\subsubsection{File Management Operations}
-
 Files can be created, modified, copied, moved, and deleted using a variety of commands. The \texttt{touch} command creates empty files or updates timestamps, while \texttt{mkdir} creates directories. File content can be written using redirection operators (\texttt{>} and \texttt{>>}) or commands like \texttt{echo}, \texttt{cat}, or text editors.
 
 Copying and moving files is accomplished through \texttt{cp} and \texttt{mv} respectively. The \texttt{cp} command creates a new file with duplicated content, while \texttt{mv} relocates the file within the filesystem hierarchy without duplicating data when the source and destination are on the same filesystem. Deletion is performed with \texttt{rm} for files and \texttt{rmdir} or \texttt{rm -r} for directories.
 
 More sophisticated operations include \texttt{rsync}, which can synchronize files between directories or systems while minimizing data transfer through checksums and delta encoding, and \texttt{dd}, which performs low-level block-by-block copying useful for creating disk images or manipulating raw devices.
-
-\subsubsection{Inodes, Links, and File Descriptors}
 
 At the filesystem implementation level, files are represented by inodes (index nodes), which are data structures containing metadata about files including permissions, ownership, timestamps, and pointers to the actual data blocks. The inode does not store the filename itself; instead, directory entries map filenames to inode numbers.
 
@@ -120,8 +131,6 @@ Symbolic links (symlinks), created with \texttt{ln -s}, are special files contai
 
 File descriptors are integer handles that processes use to reference open files. When a process opens a file using the \texttt{open()} system call, the kernel returns a file descriptor that the process uses for subsequent operations. Standard file descriptors include 0 (stdin), 1 (stdout), and 2 (stderr). Commands like \texttt{lsof} (list open files) can display which file descriptors are in use by which processes, making it possible to detect which files an agent might be accessing.
 
-\subsubsection{Permissions and Access Control}
-
 Linux implements a permission model that controls read, write, and execute access for three categories: the file's owner, members of the file's group, and all other users. Permissions are displayed by \texttt{ls -l} in the format \texttt{rwxrwxrwx}, where each trio represents owner, group, and other permissions respectively.
 
 The \texttt{chmod} command modifies permissions using either symbolic notation (\texttt{chmod u+x file}) or octal notation (\texttt{chmod 755 file}). Ownership is changed with \texttt{chown} for the owner and \texttt{chgrp} for the group. The special permissions bits include the setuid bit (executes with owner's privileges), setgid bit (inherits directory's group), and sticky bit (restricts deletion in shared directories like \texttt{/tmp}).
@@ -129,8 +138,6 @@ The \texttt{chmod} command modifies permissions using either symbolic notation (
 Beyond traditional Unix permissions, modern Linux systems support Access Control Lists (ACLs), which provide finer-grained control by allowing permissions to be specified for arbitrary users and groups. ACLs are managed through \texttt{getfacl} and \texttt{setfacl} commands. Additionally, Security-Enhanced Linux (SELinux) and AppArmor provide mandatory access control frameworks that can restrict processes regardless of traditional file permissions.
 
 File attributes, accessible through \texttt{lsattr} and modifiable via \texttt{chattr}, provide additional control mechanisms. For example, the immutable attribute (\texttt{+i}) prevents any modifications to a file, even by root, until the attribute is removed.
-
-\subsubsection{Filesystem Management and Monitoring}
 
 Filesystems must be mounted before they can be accessed, using the \texttt{mount} command which attaches a filesystem to a directory mount point. The \texttt{umount} command detaches filesystems. The \texttt{/etc/fstab} file specifies which filesystems should be automatically mounted at boot time.
 
