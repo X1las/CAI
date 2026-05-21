@@ -1,0 +1,23 @@
+In order for us to complete the goal of this project, we need to compile a model of the linux operating system that is accurate enough to be useful, but simple enough that a model can be trained on it.
+
+\subsection{The Linux Operating System Model}
+
+If we follow the login in \ref{Commandline}, and the commands in \ref{AppendixLinuxCommands}, we can broadly divide actions on the linux operating system into the following categories, excluding networking utilities:
+
+\begin{itemize}
+    \item File System Navigation
+    \item File System Manipulation
+    \item Process Management
+    \item Package Management
+    \item System Information
+    \item User/Group Management
+\end{itemize}
+
+\subsubsection{Navigation}
+
+The linux commandline provides various commands for navigation, including \texttt{ls}, \texttt{cd}, \texttt{pwd}, and \texttt{tree}. These commands allow users to explore the directory structure, list files and directories, and determine their current location in the filesystem.
+
+This essentially gives a snapshot of what the filesystem looks like at a given moment in time, and allows users to navigate through it. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to store and update its internal representation of the filesystem, which can be both useful for navigation and for detecting changes in the filesystem that may indicate the presence of another agent.
+
+This of course introduces the notion of "state maps", a map of the state of the filesystem last observed by the agent, which could potentially be exploited by another agent, should it be able to manipulate the system faster that the other model can update its state map.
+
