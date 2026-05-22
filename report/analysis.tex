@@ -13,11 +13,21 @@ If we follow the login in \ref{Commandline}, and the commands in \ref{AppendixLi
     \item User/Group Management
 \end{itemize}
 
-\subsubsection{Navigation}
+\subsubsection{State Mapping and Navigation}
 
 The linux commandline provides various commands for navigation, including \texttt{ls}, \texttt{cd}, \texttt{pwd}, and \texttt{tree}. These commands allow users to explore the directory structure, list files and directories, and determine their current location in the filesystem.
 
 This essentially gives a snapshot of what the filesystem looks like at a given moment in time, and allows users to navigate through it. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to store and update its internal representation of the filesystem, which can be both useful for navigation and for detecting changes in the filesystem that may indicate the presence of another agent.
 
 This of course introduces the notion of "state maps", a map of the state of the filesystem last observed by the agent, which could potentially be exploited by another agent, should it be able to manipulate the system faster that the other model can update its state map.
+
+\subsubsection{Process Monitoring}
+
+In addition to keeping track of the filesystem, an AI agent can also monitor running processes using commands like \texttt{ps}, \texttt{top}, and \texttt{htop}. The information obtained from such commands can be used to identify the precense of foreign processes, which may indicate the presence of another agent.
+
+Processes are however somewhat anonymous, in the sense that they can be named whatever the creator wishes. This means that there is an element of uncertainty when monitoring processes, as it could be difficult to distinguish between legitimate processes and those created by another agent.
+
+Resource wise, it seems ideal for an agent to either create multiple processes with different names, or few with higher scheduling affinity, however doing this would also make it significantly easier for the agent's counterpart to detect them, so it is likely that an agent would want to strike a balance between these two approaches. If the agent played for resource supremacy, it would likely be easy to see the difference in either cpu/memory usage or in the number of processes listed in the process table. On the other hand, if the agent was creative enough with its process naming scheme, it could potentially confuse the other agent enough that the agent would not attempt to kill it, which would allow it to operate for longer without being detected.
+
+\subsubsection{File Properties}
 
