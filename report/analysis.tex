@@ -1,6 +1,6 @@
 In order for us to complete the goal of this project, we need to compile a model of the linux operating system that is accurate enough to be useful, but simple enough that a model can be trained on it.
 
-\subsection{The Linux Operating System Model}
+\subsection{Breaking Down the Operating System}
 
 If we follow the login in \ref{Commandline}, and the commands in \ref{AppendixLinuxCommands}, we can broadly divide actions on the linux operating system into the following categories, excluding networking utilities:
 
@@ -27,7 +27,19 @@ In addition to keeping track of the filesystem, an AI agent can also monitor run
 
 Processes are however somewhat anonymous, in the sense that they can be named whatever the creator wishes. This means that there is an element of uncertainty when monitoring processes, as it could be difficult to distinguish between legitimate processes and those created by another agent.
 
+\subsubsection{Resource Dominion}
+
 Resource wise, it seems ideal for an agent to either create multiple processes with different names, or few with higher scheduling affinity, however doing this would also make it significantly easier for the agent's counterpart to detect them, so it is likely that an agent would want to strike a balance between these two approaches. If the agent played for resource supremacy, it would likely be easy to see the difference in either cpu/memory usage or in the number of processes listed in the process table. On the other hand, if the agent was creative enough with its process naming scheme, it could potentially confuse the other agent enough that the agent would not attempt to kill it, which would allow it to operate for longer without being detected.
 
-\subsubsection{File Properties}
+In addition to this, resource dominion also affects the agent's own ability to act beyond one task at a time, not forgetting that the agent will also need to manually alter the affinity of any new processes it creates, which may be a significant amount of overhead that might not be worth the potential benefits of resource supremacy.
+
+\subsubsection{I/O and Memory Manipulation}
+
+To begin with, the VFS layer converts mapped files into a directory structure, which can be navigated and manipulated using a lot of the aforementioned commands. Anything mapped onto the VFS can be logged with details such as 
+
+\subsection{To Kill an AI}
+
+
+
+\subsection{The Linux Model}
 
