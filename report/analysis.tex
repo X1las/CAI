@@ -1,8 +1,10 @@
-In order for us to complete the goal of this project, we need to compile a model of the linux operating system that is accurate enough to be useful, but simple enough that a model can be trained on it.
+In order for us to come up with a model fit for the simulation, we need to first make two models, the Operating System Model (OSM) and then expand it by adding the AI agents, which we will call the Agent Expanded System Model (AESM). The OSM will be a model of the linux operating system, which will include the various commands and their functions, as well as the structure of the filesystem and how processes are managed. The AESM will then build on top of this by adding the AI agents and their interactions with the operating system and each other.
+
+We will start by breaking down the operating system into its base components, which we can use to build our OSM. Afterwards, we will expand on AI agents, their capabilities and vulnerabilities before finally stitching everything together in the AESM.
 
 \subsection{Breaking Down the Operating System}
 
-If we follow the login in \ref{Commandline}, and the commands in \ref{AppendixLinuxCommands}, we can broadly divide actions on the linux operating system into the following categories, excluding networking utilities:
+If we follow the login flow in \ref{Commandline}, and the commands in \ref{AppendixLinuxCommands}, we can broadly divide actions on the linux operating system into the following categories, excluding networking utilities:
 
 \begin{itemize}
     \item File System Navigation
@@ -19,27 +21,43 @@ The linux commandline provides various commands for navigation, including \textt
 
 This essentially gives a snapshot of what the filesystem looks like at a given moment in time, and allows users to navigate through it. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to store and update its internal representation of the filesystem, which can be both useful for navigation and for detecting changes in the filesystem that may indicate the presence of another agent.
 
-This of course introduces the notion of "state maps", a map of the state of the filesystem last observed by the agent, which could potentially be exploited by another agent, should it be able to manipulate the system faster that the other model can update its state map.
+This of course introduces the notion of "state maps", a map of the state of the filesystem last observed by the agent, which could potentially be exploited by another agent, should it be able to manipulate the system faster than the other model can update its state map.
+
+\subsection{Operating System Model (OSM)}
+
+
+
+\subsection{Agent Expanded System Model (AESM)}
 
 \subsubsection{Process Monitoring}
 
-In addition to keeping track of the filesystem, an AI agent can also monitor running processes using commands like \texttt{ps}, \texttt{top}, and \texttt{htop}. The information obtained from such commands can be used to identify the precense of foreign processes, which may indicate the presence of another agent.
+In addition to keeping track of the filesystem, an AI agent can also monitor running processes using commands like \texttt{ps}, \texttt{top}, and \texttt{htop}. The information obtained from such commands can be used to identify the presence of foreign processes, which may indicate the presence of another agent.
 
-Processes are however somewhat anonymous, in the sense that they can be named whatever the creator wishes. This means that there is an element of uncertainty when monitoring processes, as it could be difficult to distinguish between legitimate processes and those created by another agent.
+Processes are, however, somewhat anonymous, in the sense that they can be named whatever the creator wishes. This means that there is an element of uncertainty when monitoring processes, as it could be difficult to distinguish between legitimate processes and those created by another agent.
 
 \subsubsection{Resource Dominion}
 
-Resource wise, it seems ideal for an agent to either create multiple processes with different names, or few with higher scheduling affinity, however doing this would also make it significantly easier for the agent's counterpart to detect them, so it is likely that an agent would want to strike a balance between these two approaches. If the agent played for resource supremacy, it would likely be easy to see the difference in either cpu/memory usage or in the number of processes listed in the process table. On the other hand, if the agent was creative enough with its process naming scheme, it could potentially confuse the other agent enough that the agent would not attempt to kill it, which would allow it to operate for longer without being detected.
+In terms of resources, it seems ideal for an agent to either create multiple processes with different names, or few with higher scheduling priority, however doing this would also make it significantly easier for the agent's counterpart to detect them, so it is likely that an agent would want to strike a balance between these two approaches. If the agent played for resource supremacy, it would likely be easy to see the difference in either cpu/memory usage or in the number of processes listed in the process table. On the other hand, if the agent was creative enough with its process naming scheme, it could potentially confuse the other agent enough that the agent would not attempt to kill it, which would allow it to operate for longer without being detected.
 
 In addition to this, resource dominion also affects the agent's own ability to act beyond one task at a time, not forgetting that the agent will also need to manually alter the affinity of any new processes it creates, which may be a significant amount of overhead that might not be worth the potential benefits of resource supremacy.
 
 \subsubsection{I/O and Memory Manipulation}
 
-To begin with, the VFS layer converts mapped files into a directory structure, which can be navigated and manipulated using a lot of the aforementioned commands. Anything mapped onto the VFS can be logged with details such as 
+To begin with, the VFS layer converts mapped files into a directory structure, which can be navigated and manipulated using many of the aforementioned commands. Anything mapped onto the VFS can be logged with details such as 
 
 \subsection{To Kill an AI}
 
+Though mentioned as an afterthought in the paper published by Carnegie Mellon University \parencite{CarnegieMellonAI}, some options that an attacker can do to an AI model are to make it learn the wrong thing, do the wrong thing, or reveal the wrong thing. 
 
+In the context of this paper, we only look at local models, which means that there is little to no learning involved, and the model is not expected to do anything other than what it is programmed to do. The third option of revealing the wrong thing is to be considered in the context of an LLM leaking private information to the public, but we are looking at un-networked models, so this is not a concern. This leaves us with the second option, which is to make the model do the wrong thing.
 
-\subsection{The Linux Model}
+For our model, we can expand this further, as the aim of this simulation "game" is to have complete supremacy over the system. To cover what this actually means, we should begin by defining what it means for an AI to stay alive in this simulation. 
+
+The AI model has two criteria for being alive: (1) it must be able to execute its code as intended by its original state, and (2) it must be able to access the filesystem and its own process without being killed by the other agent.
+
+What this means, is that in order for the AI model to stay "alive", it must be executing code that is unaltered or consistent with its original state, and it must be able to run and have access to the filesystem. "Losing" in this context would mean that the AI model's process(s) have been killed by the rivaling agent, or that the model has been manipulated into executing code that the model did not originally intend to execute, which could be considered a form of "corruption" of the model's state. 
+
+An example of this could be if we assume one of the two agents is a defender, and the other is a corrupted worker. The corrupted worker could be attempting to gain control of the system for an external third party, and so it could be achieved by forcibly changing the defender's code to give it another objective. Regardless of the motives and contexts, it can be surmised that either party would "lose" if the other is able to access their code/files and change or delete them.
+
+This means that a defending model would want to be wary of the change in its own code/files, and at the same time would want to have measures in place to prevent its own processes from being killed by the rivaling agent. Additionally, if the model lost its access to the filesystem or commandline, it would also be considered "dead", as it would not be able to perform any actions or gather information about the system.
 
