@@ -18,9 +18,9 @@ Why this is important for the state map, is because the user essentially has a m
 
 Keeping this in mind, we can begin to expand on our state map. Traditional representation of memory often shows a bar divided into sections, with each section representing how much space is being used by some label. The labet being anything from a specific program to something as broad as "system". This is a useful way to visualize memory usage, as data is essentially a long string of bits, however if we want to represent the state of the system we should do it in a way that is more intuitive than a long bar. Instead, we can split the memory out into a grid, where each cell represents a block of memory:
 
+{\centering\includegraphics[width=0.8\textwidth]{../images/statemap.png}\par}
 
-
-
+This could work to give us the quantity of a system's correspondents, however if we were to accurately represent the state of the system at just 64 gigabytes, we would need well over 16 million cells to represent it, which is impractical. Instead, we can choose to represent groups of blocks as single cells, allowing us to represent the state of the system by labeling 
 
 \subsubsection{States}
 
