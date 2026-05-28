@@ -90,5 +90,17 @@ From our previously mentioned strategies and criteria, we can now derive some ad
 
 \textbf{Backup Files:} These are copies of the AI agent's code and files that are stored in different locations on the filesystem. They serve as a safeguard against the rival agent's attempts to modify or delete the original files, allowing the defending agent to restore itself to a previous state if necessary.
 
-\subsubsection{State Map Extended}
+\subsubsection{State Map Expanded}
+
+Now that we have a larger set of states, we can expand the state map as well. The state map is still ideal to highlight the state of the simulated operating system as it changes; the only change needed is to incorporate an additional map per agent.
+
+This is done to provide a view of what the agents know of the system. The state map for each agent would be updated based on the information they gather from the system, such as the output of commands like \texttt{ls}, \texttt{ps}, and other monitoring tools. This allows us to track not only the actual state of the system, but also the perceived state from each agent's point of view, which is crucial for understanding their decision-making processes and strategies in the simulation.
+
+A key property of this dual-map model is \textit{information asymmetry} --- at any given moment, an agent's perceived state may diverge from both the actual state of the system and the rival agent's perceived state. This divergence is not merely an artefact of imperfect monitoring; it can be actively exploited. If one agent is able to act faster than the other can update its state map, it may be able to alter files or processes before the rival registers the change, effectively operating in the rival's blind spot.
+
+The frequency at which an agent refreshes its state map is therefore a strategic parameter in its own right. Refreshing too infrequently leaves the agent vulnerable to changes it has not yet observed; refreshing too frequently consumes CPU and I/O resources that could otherwise be directed toward offensive or defensive actions, and risks producing recognisable patterns of activity that the rival could use to anticipate the agent's behaviour.
+
+A further consideration is the possibility of deliberate \textit{map poisoning} --- an offensive strategy in which an agent creates decoy files or processes designed to mislead the rival's state map. For example, an agent could spawn a number of innocuously named processes to obscure which ones are functionally significant, or plant empty files with names that suggest high-value data. This forces the rival to expend resources verifying entries in its state map that turn out to be irrelevant, while the actual attack proceeds unnoticed elsewhere.
+
+Finally, the earlier observation that manual block manipulation bypasses the VFS entirely has direct implications for the state map. Any files or processes created without going through the VFS will not appear in the output of standard navigation and monitoring commands, meaning they will never be reflected in an agent's state map unless the agent actively probes raw block devices. This represents a structural blind spot in the map model, and is worth acknowledging as a potential vector that falls outside the scope of the current simulation but may become relevant in more advanced iterations of the model.
 
