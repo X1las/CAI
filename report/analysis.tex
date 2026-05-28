@@ -1,4 +1,4 @@
-In order for us to come up with a model fit for the simulation, we need to make closer to two models, the Operating System Model (OSM) and then expand it by adding the AI agents, which we will call the Agent Expanded System Model (AESM). The OSM will be a model of the linux operating system, which will include enough details that it can represent the various base actions occurring within the system. The AESM will then build on top of this by adding the AI agents and their interactions with the operating system and each other.
+In order to develop a model suitable for the simulation, we will construct two models: the Operating System Model (OSM) and the Agent Expanded System Model (AESM). The OSM will represent the Linux operating system in sufficient detail to capture the various base actions occurring within the system. The AESM will then build on top of this by introducing the AI agents and modelling their interactions with the operating system and each other.
 
 We will begin by expanding upon the aforementioned operating system theory by adding our own insights and observations, then build an OSM interpretation. Afterwards, we will expand on AI agents and add some potential strategies that are of interest to the final model.
 
@@ -8,15 +8,13 @@ To begin with, we want to establish a baseline for the model. If we look beyond 
 
 \subsubsection{State Mapping}
 
-The VFS layer provides a consistent interface for users to interact with the filesystem, abstracting away the underlying hardware details and the peculiarities of different filesystems. Many of the commands listed in \ref{AppendixLinuxCommands} and those mentioned in \ref{Commandline} interact through this layer. 
+The VFS layer provides a consistent interface for users to interact with the filesystem, abstracting away the underlying hardware details and the peculiarities of different filesystems. Beyond this abstraction, the VFS also manages data allocation and file metadata, relieving programs from manually tracking block locations, file lengths, or dead sectors. Additionally, the VFS maintains a change log for the filesystem, which can be valuable for both monitoring and debugging purposes. Many of the commands listed in \ref{AppendixLinuxCommands} and those mentioned in \ref{Commandline} interact through this layer.
 
-This layer is essentially responsible for making it easy for programs to store and retrieve data from the filesystem, without having to worry about manually allocating data blocks or keeping track of the length of files or dead sectors. This also comes with the added benefit of logging, giving the user the ability to track changes to the filesystem, which can be useful for both monitoring and debugging purposes. The linux commandline provides various commands for navigation, including \texttt{ls}, \texttt{cd}, \texttt{pwd}, and \texttt{tree}. These commands allow users to explore the directory structure, list files and directories, and determine their current location in the filesystem.
-
-This essentially gives a snapshot of what the filesystem looks like at a given moment in time, and allows users to navigate through it. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to store and update its internal representation of the filesystem, which can be both useful for navigation and for detecting changes in the filesystem that may indicate the presence of another agent.
+The Linux command line provides dedicated commands for navigating this structure, including \texttt{ls}, \texttt{cd}, \texttt{pwd}, and \texttt{tree}, each giving a different view of the current state of the filesystem. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to build and continuously update an internal representation of the system --- useful both for navigation and for detecting changes that may indicate the presence of a rival agent.
 
 Why this is important for the state map, is because the user essentially has a mental model of the information that the VFS layer provides, but at the same time it is also within the user's power to forego the VFS layer and manage storage and retrieval of data manually. Manual block manipulation is a more complex and error-prone process, but it also allows for complete anonymity on the file system. This is because the VFS layer is responsible for logging changes to the filesystem, meaning that any changes made through the VFS layer can be traced back to the user. On the other hand, if a user were to manipulate the filesystem directly, they could potentially avoid leaving any traces of their actions.
 
-Keeping this in mind, we can begin to expand on our state map. Traditional representation of memory often shows a bar divided into sections, with each section representing how much space is being used by some label. The label being anything from a specific program to something as broad as "system". This is a useful way to visualize memory usage, as data is essentially a long string of bits, however if we want to represent the state of the system we should do it in a way that is more intuitive than a long bar. Instead, we can split the memory out into a grid, where each cell represents a block of memory:
+Keeping this in mind, we can begin to expand on our state map. Traditional representations of memory often show a bar divided into sections, with each section representing how much space is being used by some label anything from a specific program to something as broad as "system". This is a useful way to visualize memory usage, as data is essentially a long string of bits, however if we want to represent the state of the system we should do it in a way that is more intuitive than a long bar. Instead, we can split the memory out into a grid, where each cell represents a block of memory:
 
 {\centering\includegraphics[width=0.8\textwidth]{../images/statemap.png}\par}
 
@@ -38,33 +36,59 @@ As for the states on the state map, we can label them in a few broad categories,
 
 \subsection{Agent Expanded System Model (AESM)}
 
-Now that we have basic representation of the operating system in the form of the OSM, we can begin to give it some nuance by adding the AI agents and their interactions with the system and each other. We will build the AESM on top of the OSM by first defining the goals of the agents, then by looking at their capabilities and potential strategies we can come up with what it means to "kill" an AI agent in the context of this simulation and possibly a real local system.
+Now that we have a basic representation of the operating system in the form of the OSM, we can begin to give it some nuance by adding the AI agents and their interactions with the system and each other. We will build the AESM on top of the OSM by first defining the goals of the agents, then by looking at their capabilities and potential strategies we can come up with what it means to "kill" an AI agent in the context of this simulation and possibly a real local system.
 
 \subsubsection{Process Monitoring}
 
 In addition to keeping track of the filesystem, an AI agent can also monitor running processes using commands like \texttt{ps}, \texttt{top}, and \texttt{htop}. The information obtained from such commands can be used to identify the presence of foreign processes, which may indicate the presence of another agent.
 
-Processes are, however, somewhat anonymous, in the sense that they can be named whatever the creator wishes. This means that there is an element of uncertainty when monitoring processes, as it could be difficult to distinguish between legitimate processes and those created by another agent.
+Processes are, however, somewhat anonymous. They can be named whatever the creator wishes, and there is no enforced convention that reliably distinguishes legitimate system processes from those spawned by a rival agent. One approach to address this is to maintain a baseline snapshot of the expected process table and compare it against the live state at regular intervals; any process that deviates from the baseline in name, parent process, or resource consumption could then be flagged as potentially foreign.
 
 \subsubsection{Resource Dominion}
 
 In terms of resources, it seems ideal for an agent to either create multiple processes with different names, or few with higher scheduling priority, however doing this would also make it significantly easier for the agent's counterpart to detect them, so it is likely that an agent would want to strike a balance between these two approaches. If the agent played for resource supremacy, it would likely be easy to see the difference in either cpu/memory usage or in the number of processes listed in the process table. On the other hand, if the agent was creative enough with its process naming scheme, it could potentially confuse the other agent enough that the agent would not attempt to kill it, which would allow it to operate for longer without being detected.
 
-In addition to this, resource dominion also affects the agent's own ability to act beyond one task at a time, not forgetting that the agent will also need to manually alter the affinity of any new processes it creates, which may be a significant amount of overhead that might not be worth the potential benefits of resource supremacy.
+Resource dominion also shapes the agent's own operational capacity. Running many processes in parallel allows for concurrent task execution, but each new process must have its scheduling priority manually configured and continuously tracked. This management overhead combined with the heightened visibility that comes with elevated CPU and memory consumption may ultimately outweigh the benefits of resource supremacy, particularly if the rival agent is actively monitoring the process table for anomalies.
 
-\subsection{To Kill an AI}
+\subsubsection{To Kill an AI}
 
 Though mentioned as an afterthought in the paper published by Carnegie Mellon University, they bring up an interesting point: 'An attacker can make an LLM learn the wrong thing, do the wrong thing, or reveal the wrong thing.' to paraphrase. 
 
 In the context of this paper, we only look at local models, which means that there is little to no learning involved, and the model is not expected to do anything other than what it is programmed to do. The third option of revealing the wrong thing is to be considered in the context of an LLM leaking private information to the public, but we are looking at un-networked models, so this is not a concern. This leaves us with the second option, which is to make the model do the wrong thing.
 
-For our model, we can expand this further, as the aim of this simulation "game" is to have complete supremacy over the system. To cover what this actually means, we should begin by defining what it means for an AI to stay alive in this simulation. 
+For our model, we can expand this further. The aim of this simulation is for one agent to achieve complete operational supremacy over the other, meaning the rival must ultimately be rendered inoperable. Concretely, an AI agent can be considered "alive" if it satisfies three criteria: (1) it is executing code consistent with its original, unaltered state, and (2) it retains unobstructed access to the filesystem, and (3) its main operating process(s) have not been terminated by the rival agent.
 
-The AI model has two criteria for being alive: (1) it must be able to execute its code as intended by its original state, and (2) it must be able to access the filesystem and its own processes without being killed by the other agent.
-
-"Losing" in this context would mean that the model's processes have been killed by the rival agent, or that the model has been manipulated into executing code it did not originally intend to, which could be considered a form of "corruption" of the model's state. 
-
-An example of this could be if we assume one of the two agents is a defender, and the other is a corrupted worker. The corrupted worker could be attempting to gain control of the system for an external third party, and so it could be achieved by forcibly changing the defender's code to give it another objective. Regardless of the motives and contexts, it can be surmised that either party would "lose" if the other is able to access their code/files and change or delete them.
+Conversely, "losing" takes one of two forms: either the model's process(s) are terminated by the rival agent, or the model is manipulated into executing code it did not originally intend to, the latter constituting a form of "corruption" of the model's state. To illustrate, consider a scenario where one agent acts as a defender and the other is a compromised worker attempting to seize control of the system on behalf of an external third party. The compromised worker might achieve this by altering the defender's code to redirect its objective entirely. Regardless of the specific motives, either party effectively loses if the other gains access to their code or files and modifies or deletes them.
 
 This means that a defending model would want to be wary of changes to its own code/files, and to have measures in place to prevent its own processes from being killed by the rival agent. Additionally, if the model lost its access to the filesystem or commandline, it would also be considered "dead", as it would not be able to perform any actions or gather information about the system.
+
+\subsubsection{Defensive Strategies}
+
+Given the criteria for being "alive" or "dead", a defending agent would likely want to implement strategies that protect its code and files from being modified or deleted by the rival agent. Considering that an AI model is in essense a large collection of files and a process or a set of processes, the best strategy for defending itself is to make copies of its code and files in addition to having backup processes running in parallel with low scheduling priority. 
+
+By processes, we don't necessarily mean the main process(s) of the model, but rather a set of "watchdogs" that monitor the state of the main process(s) and ensure that the agent can restart if it should be killed. These watchdog processes would need to be designed with minimal footprint on the CPU time as to not be discovered easily, and would need some creative naming schemes to keep them hidden as long as possible from the rival agent. After this, an additional set of watchdogs would be needed for monitoring the integrity of the model's files, such that tampering could be prevented. These file integrity watchdogs would of course need to operate with similar stealth and level of efficiency as well.
+
+Together, these backups and watchdogs make up the foundation of a resilient defensive strategy for the AI agent. The biggest hurdle for the agents, however, is disk write and read speed. Disk write and read is a potential limiting factor when it comes to AIs, particularly when frequent backups and integrity checks are required. However, this downside works in their favor as well. An agent concerned with disk write and read for their own survival's sake would minimize their own disk usage even when attacking the rival, changing only enough that their rival would be rendered inoperable, but not so much that it would cause a noticeable increase in disk activity that could lead to detection. 
+
+This is a delicate balance to strike, as too little activity might not achieve the desired effect on the rival agent, while too much activity could raise suspicion and lead to countermeasures being taken against the attacking agent. This all leads to the issue of making backups and integrity checks, as an agent would not be able to make partial backups of its own code and files if the rival intends to strike out pieces of its own memory at random.
+
+If we assume that a local model is 30 gigabytes in size, operating on a storage device with a read/write speed of 3000 megabytes per second, it would still take approximately 10 seconds to make a full backup of the model, if we're generous. This leaves a large gap of time wherein an agent would use 100\% of the system's disk usage. This is a generous estimate, as it assumes a very high read/write speed and a relatively small model, but it still illustrates the point that disk usage is a potential bottleneck for both defensive and offensive strategies.
+
+This might all be mitigated however, by general innovation in storage device technology, as well as by the use of partial backups and integrity checks. If we assume that a future defensive model could go to as little as 10 gigabytes in size, in addition to storage media getting twice as fast, the time it takes to make a full backup would be reduced to just a fraction of a second, making it almost negligible in terms of disk usage. Additionally, if the model is designed in such a way that it can make partial backups and integrity checks, it could further reduce the amount of disk usage required for these operations, making it even more difficult for the rival agent to detect and counteract them.
+
+\subsubsection{Agent Derived States}
+
+From our previously mentioned strategies and criteria, we can now derive some additional states that are relevant to the AESM. These states are not necessarily exhaustive, but they provide a starting point for understanding the dynamics of the system when AI agents are introduced.
+
+\textbf{Alive Agent:} A state indicating that a memory space has a functioning AI agent that can execute its intended code.
+
+\textbf{Dead Agent:} A state indicating that a memory space either has no functioning AI agent or has an agent that has been rendered inoperable due to process termination or code corruption.
+
+\textbf{Watchdog Process:} A state representing a process that is designed to monitor the main process(es) of an AI agent and ensure that it can restart if it should be killed. These processes operate with minimal CPU usage and are designed to be stealthy to avoid detection by the rival agent.
+
+\textbf{Dead Watchdog:} A state representing a watchdog process that has been killed by a rival agent or other factors, rendering it unable to perform its monitoring and recovery functions.
+
+\textbf{Backup Files:} These are copies of the AI agent's code and files that are stored in different locations on the filesystem. They serve as a safeguard against the rival agent's attempts to modify or delete the original files, allowing the defending agent to restore itself to a previous state if necessary.
+
+\subsubsection{State Map Extended}
 
