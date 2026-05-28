@@ -8,11 +8,11 @@ To begin with, we want to establish a baseline for the model. If we look beyond 
 
 \subsubsection{State Mapping}
 
-The VFS layer provides a consistent interface for users to interact with the filesystem, abstracting away the underlying hardware details and the peculiarities of different filesystems. Beyond this abstraction, the VFS also manages data allocation and file metadata, relieving programs from manually tracking block locations, file lengths, or dead sectors. Additionally, the VFS maintains a change log for the filesystem, which can be valuable for both monitoring and debugging purposes. Many of the commands listed in \ref{AppendixLinuxCommands} and those mentioned in \ref{Commandline} interact through this layer.
+The VFS layer provides a consistent interface for users to interact with the filesystem, abstracting away the underlying hardware details and the peculiarities of different filesystems. Beyond this abstraction, the VFS also manages data allocation and file metadata, relieving programs from manually tracking block locations, file lengths, or dead sectors. Additionally, file operations routed through the VFS update inode metadata including access, modification, and change timestamps, and can be observed in real time using tools such as \texttt{inotify}. This makes filesystem activity traceable for both monitoring and debugging purposes. Many of the commands listed in \ref{AppendixLinuxCommands} and those mentioned in \ref{Commandline} interact through this layer.
 
 The Linux command line provides dedicated commands for navigating this structure, including \texttt{ls}, \texttt{cd}, \texttt{pwd}, and \texttt{tree}, each giving a different view of the current state of the filesystem. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to build and continuously update an internal representation of the system --- useful both for navigation and for detecting changes that may indicate the presence of a rival agent.
 
-Why this is important for the state map, is because the user essentially has a mental model of the information that the VFS layer provides, but at the same time it is also within the user's power to forego the VFS layer and manage storage and retrieval of data manually. Manual block manipulation is a more complex and error-prone process, but it also allows for complete anonymity on the file system. This is because the VFS layer is responsible for logging changes to the filesystem, meaning that any changes made through the VFS layer can be traced back to the user. On the other hand, if a user were to manipulate the filesystem directly, they could potentially avoid leaving any traces of their actions.
+Why this is important for the state map, is because the user essentially has a mental model of the information that the VFS layer provides, but at the same time it is also within the user's power to forego the VFS layer and manage storage and retrieval of data manually. Manual block manipulation is a more complex and error-prone process, but it also allows for complete anonymity on the file system. This is because file operations through the VFS update inode metadata such as timestamps, and are visible to filesystem monitoring tools like \texttt{inotify} (as discussed in \ref{Filesystem}), meaning that changes can be detected and attributed to a process. On the other hand, if a user were to manipulate the filesystem directly, they could potentially avoid leaving any traces of their actions.
 
 Keeping this in mind, we can begin to expand on our state map. Traditional representations of memory often show a bar divided into sections, with each section representing how much space is being used by some label anything from a specific program to something as broad as "system". This is a useful way to visualize memory usage, as data is essentially a long string of bits, however if we want to represent the state of the system we should do it in a way that is more intuitive than a long bar. Instead, we can split the memory out into a grid, where each cell represents a block of memory:
 
@@ -22,7 +22,7 @@ This could work to give us the quantity of a system's components, however if we 
 
 \subsubsection{States}
 
-As for the states on the state map, we can label them in a few broad categories, but it will ultimately be dependant on the context of the AESM, however we can start with the fundamentals.
+As for the states on the state map, we can label them in a few broad categories, but it will ultimately be dependent on the context of the AESM, however we can start with the fundamentals.
 
 \textbf{System Files:} This category represents anything related to the operating system, including the partition table, boot blocks, super blocks and the kernel. These are as the name implies, essential for running the operating system, and any changes to these files could potentially lead to a system crash or other issues.
 
@@ -52,7 +52,7 @@ Resource dominion also shapes the agent's own operational capacity. Running many
 
 \subsubsection{To Kill an AI}
 
-Though mentioned as an afterthought in the paper published by Carnegie Mellon University, they bring up an interesting point: 'An attacker can make an LLM learn the wrong thing, do the wrong thing, or reveal the wrong thing.' to paraphrase. 
+Though mentioned as an afterthought in the paper published by Carnegie Mellon University \parencite{CarnegieMellonAI}, they bring up an interesting point: 'An attacker can make an LLM learn the wrong thing, do the wrong thing, or reveal the wrong thing.' to paraphrase. 
 
 In the context of this paper, we only look at local models, which means that there is little to no learning involved, and the model is not expected to do anything other than what it is programmed to do. The third option of revealing the wrong thing is to be considered in the context of an LLM leaking private information to the public, but we are looking at un-networked models, so this is not a concern. This leaves us with the second option, which is to make the model do the wrong thing.
 
@@ -64,7 +64,7 @@ This means that a defending model would want to be wary of changes to its own co
 
 \subsubsection{Defensive Strategies}
 
-Given the criteria for being "alive" or "dead", a defending agent would likely want to implement strategies that protect its code and files from being modified or deleted by the rival agent. Considering that an AI model is in essense a large collection of files and a process or a set of processes, the best strategy for defending itself is to make copies of its code and files in addition to having backup processes running in parallel with low scheduling priority. 
+Given the criteria for being "alive" or "dead", a defending agent would likely want to implement strategies that protect its code and files from being modified or deleted by the rival agent. Considering that an AI model is in essence a large collection of files and a process or a set of processes, the best strategy for defending itself is to make copies of its code and files in addition to having backup processes running in parallel with low scheduling priority. 
 
 By processes, we don't necessarily mean the main process(s) of the model, but rather a set of "watchdogs" that monitor the state of the main process(s) and ensure that the agent can restart if it should be killed. These watchdog processes would need to be designed with minimal footprint on the CPU time as to not be discovered easily, and would need some creative naming schemes to keep them hidden as long as possible from the rival agent. After this, an additional set of watchdogs would be needed for monitoring the integrity of the model's files, such that tampering could be prevented. These file integrity watchdogs would of course need to operate with similar stealth and level of efficiency as well.
 
