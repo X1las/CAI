@@ -61,7 +61,7 @@ Symbolic links (symlinks), created with \texttt{ln -s}, are special files contai
 
 \subsection{File Descriptors}
 
-File descriptors are integer handles that processes use to reference open files. When a process opens a file using the \texttt{open()} system call, the kernel returns a file descriptor that the process uses for subsequent operations. Standard file descriptors include 0 (stdin), 1 (stdout), and 2 (stderr). Commands like \texttt{lsof} (list open files) can display which file descriptors are in use by which processes, making it possible to detect which files an agent might be accessing.
+File descriptors are integer handles that processes use to reference open files. When a process opens a file using the \texttt{open()} system call, the kernel returns a file descriptor that the process uses for subsequent operations. Standard file descriptors include 0 (stdin), 1 (stdout), and 2 (stderr). Commands like \texttt{lsof} (list open files) can display which file descriptors are in use by which processes, making it possible to detect which files a user might be accessing.
 
 \subsection{Permissions and Access Control}
 

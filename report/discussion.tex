@@ -1,0 +1,54 @@
+With the initial model outlined, we are now in a position to review it for its limitations and potential improvements. The model is a simplified representation of a complex system, and as such it has several points that could be improved upon. However it serves as a useful conversation starter, with a whole slew of questions being raised in the process of creating it.
+
+We will start by reviewing the model, discussing the potential faults and improvements, followed by the implications and questions raised by it. We will then conclude with a few cases that could be interesting for the model to be applied to, which would in turn change how the model is structured.
+
+\subsection{Review of the Model}
+
+\subsubsection{Time Series}
+
+The model we have composed is essentially a snapshot of a single moment in time. It does not take into account the temporal aspect of the problem, which is a significant limitation in this study, given that a great deal of the interactions between the agents and the system are time-dependent. For example, the time it takes for an agent to think of its next move or the time it takes for a command to execute can have a significant impact on the strategies an agent might employ.
+
+Seeing as Inodes are indexed as well, we could also see that it might be possible to tract the history of file access and modification quite a lot faster than so many other actions on the system, that it might raise the question of whether some of the agent strategies are rendered obsolete by this fact. If there exists the possibility for an agent to string together a series of commands that would allow it to expediently get the system's current changes and history, then the thought of creating backups and dummy files might be rendered obsolete, as the rival agent would be able to easily detect them and kill them before they can be of any use. 
+
+In order for the model to work with time series, we would need to have continuous snapshots of the system's state to see how it changes over time, which might quickly make the model difficult to interpret and analyze, defeating the purpose. However, it is possible to see how a system changes over time, and by selecting a choice amount of snapshots, we can still get a good idea of how the system evolves without overwhelming ourselves with data. 
+
+\subsubsection{States}
+
+The model we have created is based on a set of states that represent the condition of a set of files in the system. This of course is subject to a few flaws, as it requires an abstract representation of the system, which might not be entirely representative of the actual system. For example, dead agents are represented equally in the model, but in reality there might be nuances to how an agent gets killed, such as actual formatting, overwriting, or just deleting the file. These different methods of killing an agent might have different implications for the rival agent, as these all have vastly different time implications, potentially making some strategies more viable than others.
+
+\subsubsection{Lack of Temporary Memory Allocation}
+
+The model currently does not account for the possibility of agents using temporary memory allocation to store information about the rival agent or the system state. This is a significant limitation, as it means that the model does not capture the full range of strategies that an agent might employ. For example, an agent could use temporary memory to store a snapshot of the system state at a given time, allowing it to detect changes more quickly and respond more effectively to the rival agent's actions.
+
+
+
+\subsubsection{Privilege Level}
+
+One variable that the current model leaves unresolved is the privilege level at which the agents operate. The analysis assumes that both agents can freely read and write files, spawn and terminate processes, and access system information, but whether they are running as an unprivileged user or as root has a significant impact on what is actually possible. An unprivileged agent cannot terminate processes owned by another user, cannot write to system directories, and cannot modify file permissions it does not own. A root-level agent, on the other hand, faces almost none of these restrictions, which substantially widens the set of viable strategies.
+
+This distinction matters for the model in a concrete way. Strategies such as killing the rival agent's processes or overwriting its files presuppose a level of access that may not be granted in a realistic deployment scenario. Future iterations of the model should specify the privilege context explicitly, and may benefit from modelling the two cases separately, as the set of available actions and therefore the dominant strategies are likely to differ considerably between them.
+
+\subsubsection{Symmetry of the Agents}
+
+The model as constructed treats the two agents as symmetric: equal in resources, capabilities, and knowledge of the system. This is a useful simplifying assumption for building an initial model, but it does not reflect the more likely real-world scenario, where an attacker and a defender are rarely evenly matched. An attacker agent may have been designed with specific knowledge of the defending system, may have more computational resources available, or may simply have the advantage of striking first while the defender is still establishing its baseline state map.
+
+Conversely, a defender may have the advantage of being able to set up monitoring and integrity checks before the attacker is introduced, giving it an informational head start. Asymmetry in either direction changes the dynamics of the simulation considerably, and acknowledging this as a limitation of the current model is important for contextualising its conclusions. A more advanced model could introduce configurable asymmetry as a parameter, allowing the simulation to explore a range of scenarios rather than just the balanced case.
+
+\subsubsection{The Arms Race Dynamic}
+
+A natural consequence of the strategies identified in the analysis is the emergence of an arms race dynamic between the two agents. As each agent develops defensive measures, the rival is incentivised to develop more sophisticated means of circumventing them, which in turn prompts further defensive refinement. This is not a new phenomenon in cybersecurity, but it is worth considering how it manifests specifically within the constraints of this model.
+
+The key driver of the arms race here is resource cost. Every defensive measure an agent adds, whether watchdogs, backups, or dummy files, consumes CPU time, memory, and disk I/O that could otherwise be used for offensive actions or for faster state map updates. The rival agent, aware of this overhead, can respond by increasing the rate or volume of its own actions to overwhelm the defender's monitoring capacity before it can respond. The defender must then either accept a degraded response time or invest more resources in monitoring, which again raises its own overhead and visibility.
+
+The question this raises is whether the arms race converges to a stable equilibrium or whether it escalates indefinitely. In theory, the finite resources of the system impose a ceiling on how much either agent can escalate, meaning the race must eventually reach a point where neither agent can meaningfully improve its position without compromising its own survival. In practice, the first agent to exhaust its resource budget is likely to lose, which suggests that the optimal strategy may not be the most aggressive or the most defensive, but the most resource-efficient. This is a hypothesis that the simulation could be designed to test directly.
+
+\subsubsection{Threat Vector Analysis}
+
+During the development of this model, the use of a formal threat vector analysis was considered as a means of systematically enumerating the attack surface between the two agents. In a threat vector analysis, each asset is mapped against a set of potential attack methods, producing a structured matrix of vectors that can then be prioritised by impact and likelihood. Applied to the AESM, this would have meant mapping each state category against the specific commands and mechanisms available to a rival agent.
+
+The reason this approach was ultimately set aside is that the model, in its current form, is not yet tangible enough to support a rigorous analysis of this kind. A meaningful threat vector analysis requires a well-defined system with known components, established trust boundaries, and a concrete set of agent capabilities. The AESM is still a conceptual framework rather than an implemented simulation, and the agents within it are abstractions rather than programs with fixed capabilities. Applying a formal analysis at this stage would produce results that are more speculative than informative, and could give a false impression of precision. As the model matures and the simulation is implemented, a threat vector analysis would become a natural and valuable next step.
+
+\subsection{Implications and Questions Raised}
+
+Now that we have reviewed our major concerns for the model, we can move on to the implications and questions raised by it. The model, while simplified, still raises a number of interesting questions about the nature of agent interactions, the limits of surveillance and countermeasures, and the potential for emergent behaviour in a competitive environment.
+
