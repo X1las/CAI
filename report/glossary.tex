@@ -1,8 +1,23 @@
 
-list of terms and definitions:
+List of terms and definitions used in this paper:
 \begin{itemize}
-    \item \textbf{Process} - An instance of a program that is being executed. It contains the program code and its current activity.
-    \item \textbf{Pipeline} - A series of data processing stages where the output of one stage is the input to the next.
-    \item \textbf{Thread} - An isolated unit of execution that shares memory space with other threads of the same process.
+    \item \textbf{AESM} - 'Agent Expanded System Model' The model constructed in this paper that extends the OSM by introducing AI agents and representing their states, strategies, and interactions with the system and each other.
+    \item \textbf{Arms Race Dynamic} - The escalating cycle in which each agent's defensive improvements prompt more sophisticated offensive responses from the rival, consuming increasing amounts of shared system resources.
+    \item \textbf{Backup} - Copies of an AI agent's code and data stored in separate filesystem locations, enabling the agent to restore itself if its primary files are modified or deleted.
+    \item \textbf{Boot Block} - A reserved area at the beginning of a storage device containing the bootloader code required to initialise the operating system.
+    \item \textbf{Dummy File(s)/Processe(s)} - Decoy files and processes created by an agent to mislead the rival's state map, forcing it to expend time verifying irrelevant targets.
+    \item \textbf{Information Asymmetry} - A condition in the AESM where an agent's perceived state map diverges from the actual system state or from the rival's map, creating exploitable blind spots.
+    \item \textbf{Inode} - A data structure used by Unix-like filesystems to store file metadata, including size, permissions, ownership, and timestamps, along with pointers to the file's data blocks.
     \item \textbf{Job} - A process or a pipeline that is started or scheduled to run by the user in a shell session or from the terminal.
+    \item \textbf{Map Poisoning} - An offensive strategy in which an agent plants decoy files or processes to corrupt the rival's state map, diverting its attention from the actual attack.
+    \item \textbf{OSM} - 'Operating System Model' The base conceptual model constructed in this paper, representing the Linux operating system as a memory-state machine with labelled filesystem regions.
+    \item \textbf{Pipeline} - A mechanism that connects the standard output of one process to the standard input of the next using the \texttt{|} operator, enabling chains of commands.
+    \item \textbf{Process} - An instance of a program that is being executed, running in an isolated virtual address space managed by the kernel.
+    \item \textbf{PID} - 'Process ID' A unique integer assigned by the kernel to each running process, used to identify and manage it.
+    \item \textbf{Rival Agent} - An AI agent operating on the same local system as the defending agent with opposing objectives, capable of autonomously monitoring, disrupting, or corrupting the other agent's files and processes.
+    \item \textbf{State Map} - A representation of the current known state of the filesystem and process table from the perspective of one agent, updated at each refresh cycle.
+    \item \textbf{Superblock} - A metadata structure maintained by the filesystem that records overall filesystem properties, including block size, total blocks, and free block count.
+    \item \textbf{Thread} - An isolated unit of execution that shares the memory space of its parent process, managed either by the process itself (user-level) or by the kernel scheduler.
+    \item \textbf{VFS} - 'Virtual File System' An abstraction layer within the Linux kernel that provides a uniform interface across different filesystem implementations, managing file metadata and routing all file operations.
+    \item \textbf{Watchdog} - A lightweight background process that monitors an AI agent's main process(es) and attempts to restart them if terminated, designed to operate with minimal CPU footprint to avoid detection by the rival agent.
 \end{itemize}

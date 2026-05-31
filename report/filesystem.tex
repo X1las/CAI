@@ -4,18 +4,21 @@ Filesystems are the organizational structures that determine how data is stored 
 The Linux filesystem provides the fundamental infrastructure through which processes interact with persistent data and communicate with each other. Understanding file operations is crucial for analyzing how AI agents might manipulate system state, hide information, or detect the presence of other agents.
 
 \subsection{Data Blocks, Clusters and Sectors}
+\label{DataBlocks}
 
 Sectors refer to the smallest physical unit of storage on a traditional disk drive, typically 512 bytes of storage. Sectors used to be fixed in size due to the limitations and design of hard disk drives, but with modern solid-state drives the notion of sectors has become a logical abstraction rather than a physical constraint.
 
 When a collection of sectors is grouped together, it forms a block/cluster depending on the filesystem. A block is a logical unit of storage that the filesystem uses to manage files. The size of blocks can vary depending on the filesystem and the underlying storage device, but common block sizes are 4KB or 8KB. Clusters are essentially the same as blocks, but they are often used in the context of NTFS filesystems that the Windows operating system uses.
 
-Blocks are the smallest logical unit of storage, meaning that even if a file is only a few bytes in size, it will still occupy at least one block on the filesystem. This can lead to inefficiencies, especially for small files, as the unused space within the block cannot be utilized by other files.
+Blocks are the smallest logical unit of storage, meaning that even if a file is only a few bytes in size, it will still occupy at least one block on the filesystem. This can lead to inefficiencies, especially for small files, as the unused space within the block cannot be utilised by other files.
 
 \subsubsection{Super Blocks}
+\label{SuperBlocks}
 
 Blocks are tracked by the filesystem's metadata structures, such as inodes or the superblock, which record which blocks are allocated to which files. When a file is created or modified, the filesystem allocates blocks to store the file's data and updates the metadata accordingly. The block size can impact performance and storage efficiency; larger blocks can reduce fragmentation but may waste space for small files, while smaller blocks can be more efficient for small files but may lead to increased fragmentation.
 
 \subsubsection{Boot Blocks}
+\label{BootBlocks}
 
 The boot block (or boot sector) is a reserved area at the beginning of a storage device or partition that contains the code necessary to start the boot process. On traditional BIOS systems with MBR (Master Boot Record) partitioning, the boot block occupies the first 512 bytes of the disk and contains both the bootloader code and the partition table. The bootloader is a small program that the system firmware executes to locate and load the operating system kernel into memory.
 
@@ -24,6 +27,7 @@ On modern UEFI (Unified Extensible Firmware Interface) systems with GPT (GUID Pa
 Boot blocks are critical for system initialization and are protected areas that typically cannot be modified by normal filesystem operations. In multi-boot scenarios, boot managers like GRUB (Grand Unified Bootloader) or systemd-boot reside in these boot blocks and provide menus for selecting which operating system to load. Understanding boot blocks is important in security contexts, as malicious actors might attempt to modify boot code to achieve persistence or execute code before the operating system loads (bootkits or rootkits).
 
 \subsection{Inodes}
+\label{Inodes}
 
 At the filesystem implementation level, files are represented by inodes (index nodes), which are data structures used by many Unix-like filesystems to represent files and directories. Each inode contains metadata about a file, including its size, permissions, ownership, timestamps (creation, modification, access), and pointers to the actual data blocks where the file's content is stored. The inode does not contain the filename itself; instead, directory entries map filenames to their corresponding inode numbers.
 
@@ -31,39 +35,45 @@ When a file is accessed, the filesystem uses the directory structure to resolve 
 
 \subsection{Filesystems and The Virtual File System}
 
-Linux organizes storage into three conceptual levels: the virtual file system (VFS)\parencite{KernelVFS}, individual filesystems, and files themselves. The Virtual File System (or VFS for short) is an abstraction layer within the Linux kernel that provides a uniform interface for different filesystem implementations. It allows the kernel to support multiple filesystem types without requiring changes to user-space applications. The VFS provides a unified interface that abstracts the underlying filesystem implementations, allowing different filesystem types to coexist and be accessed through a common set of system calls. The VFS manages file operations, directory structures, and metadata in a way that is consistent across all supported filesystems.
+Linux organises storage into three conceptual levels: the virtual file system (VFS)\parencite{KernelVFS}, individual filesystems, and files themselves. The Virtual File System (or VFS for short) is an abstraction layer within the Linux kernel that provides a uniform interface for different filesystem implementations. It allows the kernel to support multiple filesystem types without requiring changes to user-space applications. The VFS provides a unified interface that abstracts the underlying filesystem implementations, allowing different filesystem types to coexist and be accessed through a common set of system calls. The VFS manages file operations, directory structures, and metadata in a way that is consistent across all supported filesystems.
 
 At the top level, Linux employs a single hierarchical directory tree\parencite{GFGUnixFileSystem} rooted at \texttt{/}, unlike Windows which uses drive letters. All storage devices, regardless of their physical location or filesystem type, are mounted into this unified tree structure. Common mount points include \texttt{/home} for user directories, \texttt{/tmp} for temporary files, and \texttt{/proc} or \texttt{/sys} for kernel-provided pseudo-filesystems that expose process and system information.
 
 \subsubsection{Filesystem Types}
+\label{FilesystemTypes}
 
 Individual filesystems can be of various types, each with distinct characteristics. Modern Linux distributions commonly use ext4, which provides journaling for crash recovery and supports large files and volumes. The ext (extended) filesystem family, including ext2, ext3, and ext4, is one of the most widely used filesystems in Linux. Ext4 is the latest version and offers features such as journaling for improved reliability, support for large files and volumes, and enhanced performance. It uses a block-based allocation scheme and supports extents, which allow for more efficient storage of large files.
 
 Alternative filesystems include XFS (optimized for parallel I/O operations), Btrfs (supporting snapshots and copy-on-write), and F2FS (optimized for flash storage). The choice of filesystem affects performance characteristics, maximum file sizes, and available features, though the VFS layer ensures that basic operations remain consistent across types.
 
 \subsection{Partitions}
+\label{Partitions}
 
 Partitions are divisions of a storage device that allow it to be managed separately. Each partition can contain a different filesystem, enabling multiple operating systems or different types of data to coexist on the same physical device. Partitions are defined in a partition table, which is typically located at the beginning of the storage device. Common partitioning schemes include MBR (Master Boot Record) and GPT (GUID Partition Table).
 
 \subsection{File Operations}
+\label{FileOperations}
 
 Files can be created, modified, copied, moved, and deleted using a variety of commands. The \texttt{touch} command creates empty files or updates timestamps, while \texttt{mkdir} creates directories. File content can be written using redirection operators (\texttt{>} and \texttt{>>}) or commands like \texttt{echo}, \texttt{cat}, or text editors.
 
 Copying and moving files is accomplished through \texttt{cp} and \texttt{mv} respectively. The \texttt{cp} command creates a new file with duplicated content, while \texttt{mv} relocates the file within the filesystem hierarchy without duplicating data when the source and destination are on the same filesystem. Deletion is performed with \texttt{rm} for files and \texttt{rmdir} or \texttt{rm -r} for directories.
 
-More sophisticated operations include \texttt{rsync}, which can synchronize files between directories or systems while minimizing data transfer through checksums and delta encoding, and \texttt{dd}, which performs low-level block-by-block copying useful for creating disk images or manipulating raw devices.
+More sophisticated operations include \texttt{rsync}, which can synchronise files between directories or systems while minimizing data transfer through checksums and delta encoding, and \texttt{dd}, which performs low-level block-by-block copying useful for creating disk images or manipulating raw devices.
 
 \subsection{Links}
+\label{Links}
 
 This separation of filename and inode enables the concept of links. A hard link is an additional directory entry pointing to the same inode, effectively giving a single file multiple names. All hard links are equivalent, and the file's data is only deleted when the last link is removed and no processes have the file open. Hard links cannot span filesystems and cannot reference directories (to prevent circular references).
 
 Symbolic links (symlinks), created with \texttt{ln -s}, are special files containing a path to another file. Unlike hard links, symlinks can reference directories and cross filesystem boundaries, but they break if the target is moved or deleted. The \texttt{readlink} command can resolve symbolic links to their targets.
 
 \subsection{File Descriptors}
+\label{FileDescriptors}
 
 File descriptors are integer handles that processes use to reference open files. When a process opens a file using the \texttt{open()} system call, the kernel returns a file descriptor that the process uses for subsequent operations. Standard file descriptors include 0 (stdin), 1 (stdout), and 2 (stderr). Commands like \texttt{lsof} (list open files) can display which file descriptors are in use by which processes, making it possible to detect which files a user might be accessing.
 
 \subsection{Permissions and Access Control}
+\label{PermissionsAndACL}
 
 Linux implements a permission model that controls read, write, and execute access for three categories: the file's owner, members of the file's group, and all other users. Permissions are displayed by \texttt{ls -l} in the format \texttt{rwxrwxrwx}, where each trio represents owner, group, and other permissions respectively.
 
@@ -74,14 +84,16 @@ Beyond traditional Unix permissions, modern Linux systems support Access Control
 File attributes, accessible through \texttt{lsattr} and modifiable via \texttt{chattr}, provide additional control mechanisms. For example, the immutable attribute (\texttt{+i}) prevents any modifications to a file, even by root, until the attribute is removed.
 
 \subsection{Mounting and Filesystem Management}
+\label{MountingFilesystems}
 
 Filesystems must be mounted before they can be accessed, using the \texttt{mount} command which attaches a filesystem to a directory mount point. The \texttt{umount} command detaches filesystems. The \texttt{/etc/fstab} file specifies which filesystems should be automatically mounted at boot time.
 
 Creating new filesystems is accomplished with the \texttt{mkfs} family of commands (e.g., \texttt{mkfs.ext4}, \texttt{mkfs.xfs}), while filesystem consistency checks and repairs are performed by \texttt{fsck}. These operations typically require elevated privileges and unmounted filesystems.
 
 \subsection{Monitoring Filesystem Usage and Activity}
+\label{MonitoringFilesystem}
 
-Monitoring filesystem usage is essential for detecting unusual behavior. The \texttt{df} command displays disk space usage by filesystem, while \texttt{du} shows space used by directories and files. The \texttt{stat} command provides detailed information about a specific file, including inode number, size, blocks allocated, and all timestamps (access time, modification time, and change time).
+Monitoring filesystem usage is essential for detecting unusual behaviour. The \texttt{df} command displays disk space usage by filesystem, while \texttt{du} shows space used by directories and files. The \texttt{stat} command provides detailed information about a specific file, including inode number, size, blocks allocated, and all timestamps (access time, modification time, and change time).
 
 For detecting file system activity, several commands prove useful. The \texttt{find} command can search for files based on numerous criteria including name patterns, modification times, permissions, and size. The \texttt{inotify} system provides efficient filesystem event monitoring, accessible through tools like \texttt{inotifywait}, which can watch for file creation, modification, deletion, and access in real time.
 

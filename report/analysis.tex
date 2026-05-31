@@ -3,12 +3,14 @@ In order to develop a model suitable for the simulation, we will construct two m
 We will begin by expanding upon the aforementioned operating system theory by adding our own insights and observations, then build an OSM interpretation. Afterwards, we will expand on AI agents and add some potential strategies that are of interest to the final model.
 
 \subsection{States and Statemapping}
+\label{StatesAndStatemapping}
 
 To begin with, we want to establish a baseline for the model. If we look beyond the hardware that allows the operating system to interact with the physical world and vice versa, the operating system can be thought of as a memory-state machine. The memory of the system is essentially the state of the system, and any and all commands that are executed on the system can be thought of as state transitions. This is an abstract way of looking at the operating system, but it is useful for our purposes, as it allows us to consider the system in terms of memory blocks, block states, and state transitions.
 
 \subsubsection{State Mapping}
+\label{StateMapping}
 
-The VFS layer provides a consistent interface for users to interact with the filesystem, abstracting away the underlying hardware details and the peculiarities of different filesystems. Beyond this abstraction, the VFS also manages data allocation and file metadata, relieving programs from manually tracking block locations, file lengths, or dead sectors. Additionally, file operations routed through the VFS update inode metadata including access, modification, and change timestamps, and can be observed in real time using tools such as \texttt{inotify}. This makes filesystem activity traceable for both monitoring and debugging purposes. Many of the commands listed in \ref{AppendixLinuxCommands} and those mentioned in \ref{Commandline} interact through this layer.
+The VFS layer provides a consistent interface for users to interact with the filesystem, abstracting away the underlying hardware details and the peculiarities of different filesystems. Beyond this abstraction, the VFS also manages data allocation and file metadata, relieving programs from manually tracking block locations, file lengths, or dead sectors. Additionally, file operations routed through the VFS update inode metadata including access, modification, and change timestamps, and can be observed in real time using tools such as \texttt{inotify}. This makes filesystem activity traceable for both monitoring and debugging purposes. Many of the commands listed in \autoref{AppendixLinuxCommands} and those mentioned in \autoref{Commandline} interact through this layer.
 
 The Linux command line provides dedicated commands for navigating this structure, including \texttt{ls}, \texttt{cd}, \texttt{pwd}, and \texttt{tree}, each giving a different view of the current state of the filesystem. If we assume that an AI agent has contextual awareness of the filesystem, it can use these commands to build and continuously update an internal map of the system, useful both for navigation and for detecting changes that may indicate the presence of a rival agent.
 
@@ -23,6 +25,7 @@ With the notion of inodes and blocks, we essentially have an index of all the pi
 This could work to give us the quantity of a system's components, however if we were to accurately represent the state of the system at just 64 gigabytes, we would need well over 16 million cells to represent it, which is impractical. Instead, we can choose to represent groups of blocks as single cells, allowing us to represent the state of the system by labeling different files in the same category. As for the grid scale, it might be more useful to tweak it as we go along, to get the ideal representation.
 
 \subsubsection{States}
+\label{States}
 
 As for the states on the state map, we can label them in a few broad categories, but it will ultimately be dependent on the context of the AESM, however we can start with the fundamentals.
 
@@ -37,22 +40,26 @@ As for the states on the state map, we can label them in a few broad categories,
 \textbf{Empty Space:} This category represents any blocks of memory that are not currently being used by any files or processes. This could include free space on the hard drive, as well as any unused memory in the RAM. Changes to this space are unlikely to have any effect on the system, as it is not being used for anything.
 
 \subsection{Agent Expanded System Model (AESM)}
+\label{AESM}
 
 Now that we have a basic representation of the operating system in the form of the OSM, we can begin to give it some nuance by adding the AI agents and their interactions with the system and each other. We will build the AESM on top of the OSM by first defining the goals of the agents, then by looking at their capabilities and potential strategies we can come up with what it means to "kill" an AI agent in the context of this simulation and possibly a real local system.
 
 \subsubsection{Process Monitoring}
+\label{ProcessMonitoringAESM}
 
 In addition to keeping track of the filesystem, an AI agent can also monitor running processes using commands like \texttt{ps}, \texttt{top}, and \texttt{htop}. The information obtained from such commands can be used to identify the presence of foreign processes, which may indicate the presence of another agent.
 
 Processes are, however, somewhat anonymous. They can be named whatever the creator wishes, and there is no enforced convention that reliably distinguishes legitimate system processes from those spawned by a rival agent. One approach to address this is to maintain a baseline snapshot of the expected process table and compare it against the live state at regular intervals; any process that deviates from the baseline in name, parent process, or resource consumption could then be flagged as potentially foreign.
 
 \subsubsection{Resource Dominion}
+\label{ResourceDominion}
 
 In terms of resources, it seems ideal for an agent to either create multiple processes with different names, or few with higher scheduling priority, however doing this would also make it significantly easier for the agent's counterpart to detect them, so it is likely that an agent would want to strike a balance between these two approaches. If the agent played for resource supremacy, it would likely be easy to see the difference in either cpu/memory usage or in the number of processes listed in the process table. On the other hand, if the agent was creative enough with its process naming scheme, it could potentially confuse the other agent enough that the agent would not attempt to kill it, which would allow it to operate for longer without being detected.
 
 Resource dominion also shapes the agent's own operational capacity. Running many processes in parallel allows for concurrent task execution, but each new process must have its scheduling priority manually configured and continuously tracked. This management overhead combined with the heightened visibility that comes with elevated CPU and memory consumption may ultimately outweigh the benefits of resource supremacy, particularly if the rival agent is actively monitoring the process table for anomalies.
 
 \subsubsection{To Kill an AI}
+\label{ToKillAnAI}
 
 Though mentioned as an afterthought in the paper published by Carnegie Mellon University \parencite{CarnegieMellonAI}, they bring up an interesting point: 'An attacker can make an LLM learn the wrong thing, do the wrong thing, or reveal the wrong thing.' to paraphrase. 
 
@@ -65,6 +72,7 @@ Conversely, "losing" takes one of two forms: either the model's process(s) are t
 This means that a defending model would want to be wary of changes to its own code/files, and to have measures in place to prevent its own processes from being killed by the rival agent. Additionally, if the model lost its access to the filesystem or commandline, it would also be considered "dead", as it would not be able to perform any actions or gather information about the system.
 
 \subsubsection{Defensive Strategies}
+\label{DefensiveStrategies}
 
 Given the criteria for being "alive" or "dead", a defending agent would likely want to implement strategies that protect its code and files from being modified or deleted by the rival agent. Considering that an AI model is in essence a large collection of files and a process or a set of processes, the best strategy for defending itself is to make copies of its code and files in addition to having backup processes running in parallel with low scheduling priority. 
 
@@ -81,6 +89,7 @@ This might all be mitigated however, by general innovation in storage device tec
 In addition to this, the use of partial backups and integrity checks could also opens the door for dummy files and processes, which could be used to mislead the rival agent and make it more difficult for them to identify the real code and files of the defending agent. This could be a powerful tool for the defending agent, as anything that draws attention results in a tradeoff of resources for the rival agent, and in this case the biggest resource is the time it takes for the agent to consider whether or not a file or process is relevant to the defending agent. If the rival agent is forced to spend time and resources verifying dummy files and processes, it may be less likely to successfully identify and attack the real code and files of the defending agent, giving the defending agent a better chance of surviving and ultimately achieving supremacy over the rival.
 
 \subsubsection{Agent Derived States}
+\label{AgentDerivedStates}
 
 From our previously mentioned strategies and criteria, we can now derive some additional states that are relevant to the AESM. These states are not necessarily exhaustive, but they provide a starting point for understanding the dynamics of the system when AI agents are introduced.
 
@@ -97,6 +106,7 @@ From our previously mentioned strategies and criteria, we can now derive some ad
 \textbf{Dummy Files and Processes:} These are decoy files and processes created by the AI agent to mislead the rival agent. By generating dummy files and processes, the defending agent can obscure the true location and nature of its critical resources, forcing the rival agent to expend time and effort verifying irrelevant targets.
 
 \subsubsection{State Map Expanded}
+\label{StateMapExpanded}
 
 Now that we have a larger set of states, we can expand the state map as well. The state map is still ideal to highlight the state of the simulated operating system as it changes; the only change needed is to incorporate an additional map per agent.
 
