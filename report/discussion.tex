@@ -4,6 +4,10 @@ We will start by reviewing the model, discussing the potential faults and improv
 
 \subsection{Review of the Model}
 
+For the review of our model, we have a lot of topics to touch on, as there are a lot of potential improvements that could be made to it. The model is a very simplified representation of a complex system, and as such it has several limitations that need be addressed. We will be looking first at how time plays a significant role in the interactions between the agents and the system, and how the model does not currently account for this, then look more critically at the states that we have defined, and how they might not be entirely representative of the system. 
+
+We will look at the lack of temporary memory allocation representation in the model, such as RAM. Then we will look at the question of 'privelege level', or authorization and the lack thereof in the model. Then onto the symmetry of agents and how this might throw a wrench in the model. Lastly, we will discuss the potential for a threat vector analysis to be applied to the model, and why it was ultimately not used in this case.
+
 \subsubsection{Time Series}
 
 The model we have composed is essentially a snapshot of a single moment in time. It does not take into account the temporal aspect of the problem, which is a significant limitation in this study, given that a great deal of the interactions between the agents and the system are time-dependent. For example, the time it takes for an agent to think of its next move or the time it takes for a command to execute can have a significant impact on the strategies an agent might employ.
@@ -16,11 +20,17 @@ In order for the model to work with time series, we would need to have continuou
 
 The model we have created is based on a set of states that represent the condition of a set of files in the system. This of course is subject to a few flaws, as it requires an abstract representation of the system, which might not be entirely representative of the actual system. For example, dead agents are represented equally in the model, but in reality there might be nuances to how an agent gets killed, such as actual formatting, overwriting, or just deleting the file. These different methods of killing an agent might have different implications for the rival agent, as these all have vastly different time implications, potentially making some strategies more viable than others.
 
+\subsubsection{Multiple Agents}
+
+The model currently only accounts for two agents, which in itself is a significant change in how agents are viewed in the context of a system. In theory, there could be multiple agents running around on the system, which would make the interactions between them much more complex. If we have multiple agents we have to consider the possibility of 'alliances' between agents, having to consider the possibility of betrayl and overwriting files more significantly.
+
+In addition to this, we might have to consider user profiles more heavily, as there are built in commands to switch user profiles and send chat messages from one user profile to another, which could be used for communication between agents, opening up a whole new avenue of strategies and interactions between agents. This would also make the model more complex, as we would have to account for the possibility of multiple agents working together, which would make the interactions between them much more complex and difficult to analyze.
+
 \subsubsection{Lack of Temporary Memory Allocation}
 
-The model currently does not account for the possibility of agents using temporary memory allocation to store information about the rival agent or the system state. This is a significant limitation, as it means that the model does not capture the full range of strategies that an agent might employ. For example, an agent could use temporary memory to store a snapshot of the system state at a given time, allowing it to detect changes more quickly and respond more effectively to the rival agent's actions.
+In addition to this, the process space used by the agents is represented in the model as states, but there also exists a /proc directory in Linux that stores information about the processes running on the system, which might be somewhat interchangeable with some of the RAM storage. It is simply unknown, and it is a significant limitation of the model that we do not account for or know how to account for temporary memory allocation. 
 
-
+Our model does not account for the possibility of agents using temporary memory allocation to store information, or what the temporary memory space means for the agents, as it's a much faster way to store and access information, difficult to read and limited in size. This could be a significant strategy for agents, as it changes how they might choose to store information, as well as RAM being an easy measure of system utility, as top or btop shows total ram utilization in real time, which might also be important for agents to make decisions on how to proceed with their mission.
 
 \subsubsection{Privilege Level}
 
@@ -50,5 +60,7 @@ The reason this approach was ultimately set aside is that the model, in its curr
 
 \subsection{Implications and Questions Raised}
 
-Now that we have reviewed our major concerns for the model, we can move on to the implications and questions raised by it. The model, while simplified, still raises a number of interesting questions about the nature of agent interactions, the limits of surveillance and countermeasures, and the potential for emergent behaviour in a competitive environment.
+Now that we have reviewed some of our major concerns for the model, we can move on to the implications and questions raised by it. The model, while simplified, still raises a number of interesting questions about the nature of agent interactions, the limits of surveillance and countermeasures, and the potential for emergent behaviour.
+
+
 
