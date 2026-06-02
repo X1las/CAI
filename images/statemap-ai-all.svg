@@ -7,8 +7,11 @@
    viewBox="0 0 285.74999 190.5"
    version="1.1"
    id="svg1"
-   sodipodi:docname="statemap.svg"
+   sodipodi:docname="statemap-ai-all.svg"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   inkscape:export-filename="statemap-ai2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +51,7 @@
        id="path2"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#8c8c8c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#ec2ce3;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="M 163.66588,28.541176 184.83254,41.770342 163.66588,54.999509 142.49921,41.770342 Z"
        id="path3"
        sodipodi:nodetypes="ccccc" />
@@ -108,12 +111,12 @@
        id="path13"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#8c8c8c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#edfc1c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="M 227.16588,68.228676 248.33254,81.457842 227.16588,94.687009 205.99921,81.457842 Z"
        id="path14"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#8c8c8c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#5c47d1;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="M 248.33254,81.457842 269.4992,94.687008 248.33254,107.91617 227.16587,94.687008 Z"
        id="path15"
        sodipodi:nodetypes="ccccc" />
@@ -123,12 +126,12 @@
        id="path16"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#8c8c8c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#edfc1c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="M 205.99922,81.457843 227.16588,94.687009 205.99922,107.91618 184.83255,94.687009 Z"
        id="path17"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#ea2e2e;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#5c47d1;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="m 227.16588,94.687009 21.16666,13.229171 -21.16666,13.22916 -21.16667,-13.22916 z"
        id="path18"
        sodipodi:nodetypes="ccccc" />
@@ -138,12 +141,12 @@
        id="path19"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#8c8c8c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#edfc1c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="m 184.83255,94.687009 21.16666,13.229161 -21.16666,13.22917 -21.16667,-13.22917 z"
        id="path20"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#8c8c8c;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#5c47d1;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="m 205.99921,107.91617 21.16666,13.22917 -21.16666,13.22917 -21.16667,-13.22917 z"
        id="path21"
        sodipodi:nodetypes="ccccc" />
@@ -308,25 +311,6 @@
            style="fill:#000000;fill-opacity:1;stroke-width:0.1442;stroke-dasharray:none"
            x="230.95975"
            y="24.397335">Watchdog</tspan></text>
-      <rect
-         style="fill:#ea2e2e;fill-opacity:1;stroke:#000000;stroke-width:0.633256;stroke-dasharray:none;stroke-opacity:1"
-         id="rect4"
-         width="25.825077"
-         height="4.6584105"
-         x="256.96246"
-         y="23.462296" />
-      <text
-         xml:space="preserve"
-         style="font-size:3.5491px;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.1442;stroke-dasharray:none;stroke-opacity:1"
-         x="234.77161"
-         y="30.252432"
-         id="text4"
-         transform="scale(1.1288549,0.88585345)"><tspan
-           sodipodi:role="line"
-           id="tspan4"
-           style="fill:#000000;fill-opacity:1;stroke-width:0.1442;stroke-dasharray:none"
-           x="234.77161"
-           y="30.252432">Rival</tspan></text>
     </g>
     <g
        id="g1"
