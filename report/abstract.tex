@@ -1,0 +1,7 @@
+As AI models become capable of autonomous tactical decision-making, understanding how competing agents might behave when sharing a local system is becoming a meaningful cybersecurity problem. This paper does not simulate such a scenario, but constructs a conceptual model of the Linux operating system detailed enough to reason about it.
+
+The Linux commandline and filesystem are surveyed to catalogue the operations concretely available to a locally running agent, from which two analytical frameworks are built: the Operating System Model (OSM), which represents the system as a memory-state machine, and the Agent Expanded System Model (AESM), which introduces two competing agents and formalises what it means for one to defeat the other.
+
+From the AESM, the paper derives theoretical strategies for attack and defence, including watchdog processes, distributed backups, dummy files, and state map poisoning. These strategies naturally produce an arms race dynamic, and the paper argues that the most resource-efficient agent is likely to prevail over the most aggressive or the most defensive one.
+
+The model's key limitations are discussed, namely that it is a static snapshot, treats agent state as binary, omits RAM, leaves privilege level unspecified, and assumes agent symmetry. A live virtual machine simulation is identified as the most important next step.

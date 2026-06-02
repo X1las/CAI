@@ -18,6 +18,8 @@ Why this is important for the state map, is because the user essentially has a m
 
 Keeping this in mind, we can begin to elaborate on our state map. Traditional representations of memory often show a type of 'bar' divided into sections, with each section representing how much space is being used by some category of data. Anything from a specific program, to something as broad as "system" can be represented in this manner, and it is useful for showing the user what comprises their disk usage if they want to make a bit more free space. Memory is essentially a long string of bits, so it would be an accurate representation as well, however if we want to represent the state of the system we should do it in a way that is more intuitive. 
 
+{\centering\includegraphics[width=0.6\textwidth]{../images/filebar.png}\par}
+
 With the notion of inodes and blocks, we essentially have an index of all the pieces of memory on a storage device. If we instead imagine this index as a grid of coordinates and sizes representing the data blocks, none of this information would be lost:
 
 {\centering\includegraphics[width=0.8\textwidth]{../images/statemap.png}\par}
