@@ -4,7 +4,7 @@ A report for Roskilde University (Denmark) on Counter AI systems (CAI).
 
 In this report we outline a few key aspects of what is possible for an AI to do if it were allowed local access to a Unix operating system.
 
-# Sources:
+# Sources
 
 ### Reports & Articles
 - Moix, A., Lebedev, K., Klein, J. (2025). *Threat Intelligence Report: August 2025*. Anthropic.

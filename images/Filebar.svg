@@ -3,12 +3,15 @@
 
 <svg
    width="1080"
-   height="720"
-   viewBox="0 0 285.74999 190.5"
+   height="360"
+   viewBox="0 0 285.74999 95.25"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    sodipodi:docname="Filebar.svg"
+   inkscape:export-filename="Filebar.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +26,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="1.0116647"
-     inkscape:cx="480.89058"
-     inkscape:cy="421.58239"
+     inkscape:zoom="0.71535494"
+     inkscape:cx="379.53187"
+     inkscape:cy="457.81469"
      inkscape:window-width="1853"
      inkscape:window-height="1011"
      inkscape:window-x="67"
@@ -36,31 +39,31 @@
      id="defs1">
     <rect
        x="173.97069"
-       y="430.97285"
+       y="430.97284"
        width="106.75474"
        height="27.677156"
        id="rect3" />
     <rect
        x="173.97069"
-       y="430.97285"
+       y="430.97284"
        width="106.75474"
        height="27.677156"
        id="rect4" />
     <rect
        x="173.97069"
-       y="430.97285"
+       y="430.97284"
        width="106.75474"
        height="27.677156"
        id="rect5" />
     <rect
        x="173.97069"
-       y="430.97285"
+       y="430.97284"
        width="106.75474"
        height="27.677156"
        id="rect6" />
     <rect
        x="173.97069"
-       y="430.97285"
+       y="430.97284"
        width="106.75474"
        height="27.677156"
        id="rect7" />
@@ -74,46 +77,46 @@
        id="rect1"
        width="40"
        height="35"
-       x="220.03618"
-       y="70" />
+       x="222.62521"
+       y="26.726027" />
     <rect
        style="fill:#137a70;fill-opacity:1;stroke:none;stroke-width:0.873184;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-0"
        width="60"
        height="35"
-       x="160.03618"
-       y="70" />
+       x="162.62521"
+       y="26.726027" />
     <rect
        style="fill:#9db41c;fill-opacity:1;stroke:none;stroke-width:0.504133;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-8"
        width="20"
        height="35"
-       x="140.03618"
-       y="70" />
+       x="142.62521"
+       y="26.726027" />
     <rect
        style="fill:#7a3513;fill-opacity:1;stroke:none;stroke-width:0.873184;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-2"
        width="60"
        height="35"
-       x="80.036186"
-       y="70" />
+       x="82.625229"
+       y="26.726027" />
     <rect
        style="fill:#4f4f4f;fill-opacity:1;stroke:none;stroke-width:0.873184;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-22"
        width="60"
        height="35"
-       x="20.036184"
-       y="70" />
+       x="22.625225"
+       y="26.726027" />
     <rect
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
        id="rect2"
        width="239.27863"
        height="34.278618"
-       x="20.396875"
-       y="70.360687" />
+       x="22.985916"
+       y="27.086714" />
     <g
        id="g3"
-       transform="translate(-9.9638161)">
+       transform="translate(-7.374775,-43.273973)">
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
          d="m 60,105 v 10"
@@ -123,7 +126,7 @@
          xml:space="preserve"
          transform="matrix(0.26458333,0,0,0.26458333,3.7945683,2.5139604)"
          id="text2"
-         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
+         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="173.9707"
            y="441.89116"
            id="tspan1">Empty Space</tspan></text>
@@ -133,21 +136,21 @@
        transform="translate(60)">
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
-         d="m 50.036184,105 v 10"
+         d="m 52.625225,61.726027 v 10"
          id="path3"
          sodipodi:nodetypes="cc" />
       <text
          xml:space="preserve"
-         transform="matrix(0.26458333,0,0,0.26458333,-1.5459601,2.6988919)"
+         transform="matrix(0.26458333,0,0,0.26458333,1.043081,-40.575081)"
          id="text4"
-         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4);fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
+         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="173.9707"
            y="441.89116"
            id="tspan2">Videos</tspan></text>
     </g>
     <g
        id="g5"
-       transform="translate(90.036184)">
+       transform="translate(92.625225,-43.273973)">
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
          d="m 60,105 v 10"
@@ -157,14 +160,14 @@
          xml:space="preserve"
          transform="matrix(0.26458333,0,0,0.26458333,8.047993,2.5139604)"
          id="text5"
-         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect5);fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
+         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect5);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="173.9707"
            y="441.89116"
            id="tspan3">Images</tspan></text>
     </g>
     <g
        id="g6"
-       transform="translate(130.03618)">
+       transform="translate(132.62522,-43.273973)">
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
          d="m 60,105 v 10"
@@ -174,14 +177,14 @@
          xml:space="preserve"
          transform="matrix(0.26458333,0,0,0.26458333,3.7945683,2.5139604)"
          id="text6"
-         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
+         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="173.9707"
            y="441.89116"
            id="tspan4">Program Files</tspan></text>
     </g>
     <g
        id="g7"
-       transform="translate(180.03618)">
+       transform="translate(182.62522,-43.273973)">
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
          d="m 60,105 v 10"
@@ -191,7 +194,7 @@
          xml:space="preserve"
          transform="matrix(0.26458333,0,0,0.26458333,3.7945683,2.5139604)"
          id="text7"
-         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect7);fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
+         style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect7);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="173.9707"
            y="441.89116"
            id="tspan5">System Files
